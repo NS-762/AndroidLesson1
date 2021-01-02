@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_Bottom"
+        android:layout_width="375dp"
+        android:layout_height="486dp"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_1"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#666666"
+            android:onClick="onClickLinerLayout_1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="244dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Date_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:gravity="bottom"
+                    android:text="3 января 2021"
+                    android:textColor="#D8D8D8"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/DayOfWeek_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="воскресенье"
+                    android:textColor="#D8D8D8"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/WeatherPicture_1"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/rain" />
+
+            <TextView
+                android:id="@+id/Temperature_1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|clip_vertical|center_horizontal"
+                android:text="8"
+                android:textColor="#D8D8D8"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_2"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#777777"
+            android:onClick="onClickLinerLayout_2"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="244dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Date_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:gravity="bottom"
+                    android:text="4 января 2021"
+                    android:textColor="#D8D8D8"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/DayOfWeek_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="понедельник"
+                    android:textColor="#D8D8D8"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/WeatherPicture_2"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/snowing" />
+
+            <TextView
+                android:id="@+id/Temperature_2"
+                android:layout_width="13dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|clip_vertical|center_horizontal"
+                android:text="-2"
+                android:textColor="#D8D8D8"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_3"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#666666"
+            android:onClick="onClickLinerLayout_3"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="244dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Date_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:gravity="bottom"
+                    android:text="5 января 2021"
+                    android:textColor="#D8D8D8"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/DayOfWeek_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="вторник"
+                    android:textColor="#D8D8D8"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/WeatherPicture_3"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/storm" />
+
+            <TextView
+                android:id="@+id/Temperature_3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|clip_vertical|center_horizontal"
+                android:text="6"
+                android:textColor="#D8D8D8"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_4"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#777777"
+            android:onClick="onClickLinerLayout_4"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="244dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Date_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:gravity="bottom"
+                    android:text="6 января 2021"
+                    android:textColor="#D8D8D8"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/DayOfWeek_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="среда"
+                    android:textColor="#D8D8D8"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/WeatherPicture_4"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/snowflake" />
+
+            <TextView
+                android:id="@+id/Temperature_4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|clip_vertical|center_horizontal"
+                android:text="3"
+                android:textColor="#D8D8D8"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_5"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#666666"
+            android:onClick="onClickLinerLayout_5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="244dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Date_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:gravity="bottom"
+                    android:text="7 января 2021"
+                    android:textColor="#D8D8D8"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/DayOfWeek_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="четверг"
+                    android:textColor="#D8D8D8"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/WeatherPicture_5"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/rain2" />
+
+            <TextView
+                android:id="@+id/Temperature_5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|clip_vertical|center_horizontal"
+                android:text="0"
+                android:textColor="#D8D8D8"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_6"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#777777"
+            android:onClick="onClickLinerLayout_6"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="244dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Date_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:gravity="bottom"
+                    android:text="8 января 2021"
+                    android:textColor="#D8D8D8"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/DayOfWeek_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="пятница"
+                    android:textColor="#D8D8D8"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/WeatherPicture_6"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/sun" />
+
+            <TextView
+                android:id="@+id/Temperature_6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|clip_vertical|center_horizontal"
+                android:text="4"
+                android:textColor="#D8D8D8"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_7"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#666666"
+            android:onClick="onClickLinerLayout_7"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="244dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Date_7"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:gravity="bottom"
+                    android:text="9 января 2021"
+                    android:textColor="#D8D8D8"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/DayOfWeek_7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="суббота"
+                    android:textColor="#D8D8D8"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/WeatherPicture_7"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/rain1" />
+
+            <TextView
+                android:id="@+id/Temperature_7"
+                android:layout_width="13dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|clip_vertical|center_horizontal"
+                android:text="-1"
+                android:textColor="#D8D8D8"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="375dp"
+        android:layout_height="200dp"
+        android:background="#666666"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03">
+
+        <TextView
+            android:id="@+id/Сity"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="Москва"
+            android:textColor="#D8D8D8"
+            android:textSize="30sp"
+            android:textStyle="normal|bold"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/Date_0"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:text="2 января 2021 года, суббота"
+            android:textColor="#AEAEAE"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Temperature_0"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:text="-6"
+                android:textColor="#E3E2E2"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:id="@+id/WeatherPicture_0"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="0dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/night1" />
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="107dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/wind" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="3,00"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/gauge" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="610"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="21dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/drop" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="105dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="76"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
