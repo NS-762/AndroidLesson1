@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidLesson1</string>
+    <string name="city">Москва</string>
+
+    <string name="wind">3,00</string>
+    <string name="pressure">610</string>
+    <string name="humdity">76</string>
+
+    <string name="date_0">2 января 2021 года, суббота</string>
+    <string name="date_1">3 января 2021</string>
+    <string name="date_2">4 января 2021</string>
+    <string name="date_3">5 января 2021</string>
+    <string name="date_4">6 января 2021</string>
+    <string name="date_5">7 января 2021</string>
+    <string name="date_6">8 января 2021</string>
+    <string name="date_7">9 января 2021</string>
+
+    <string name="day_of_week_1">воскресенье</string>
+    <string name="day_of_week_2">понедельник</string>
+    <string name="day_of_week_3">вторник</string>
+    <string name="day_of_week_4">среда</string>
+    <string name="day_of_week_5">четверг</string>
+    <string name="day_of_week_6">пятница</string>
+    <string name="day_of_week_7">суббота</string>
+
+    <string name="temperature_0">-6</string>
+    <string name="temperature_1">8</string>
+    <string name="temperature_2">-2</string>
+    <string name="temperature_3">6</string>
+    <string name="temperature_4">3</string>
+    <string name="temperature_5">0</string>
+    <string name="temperature_6">4</string>
+    <string name="temperature_7">-1</string>
+
+</resources>
