@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">AndroidLesson1</string>
+    <string name="city">Moscow</string>
+
+    <string name="wind">3,00</string>
+    <string name="pressure">610</string>
+    <string name="humdity">76</string>
+
+    <string name="date_0">January 2, 2021, Saturday</string>
+    <string name="date_1">January 3, 20211</string>
+    <string name="date_2">January 4, 2021</string>
+    <string name="date_3">January 5, 20211</string>
+    <string name="date_4">January 6, 2021</string>
+    <string name="date_5">January 7, 2021</string>
+    <string name="date_6">January 8, 2021</string>
+    <string name="date_7">January 9, 2021</string>
+
+    <string name="day_of_week_1">sunday</string>
+    <string name="day_of_week_2">monday</string>
+    <string name="day_of_week_3">tuesday</string>
+    <string name="day_of_week_4">wednesday</string>
+    <string name="day_of_week_5">thursday</string>
+    <string name="day_of_week_6">friday</string>
+    <string name="day_of_week_7">saturday</string>
+
+    <string name="temperature_0">-6</string>
+    <string name="temperature_1">8</string>
+    <string name="temperature_2">-2</string>
+    <string name="temperature_3">6</string>
+    <string name="temperature_4">3</string>
+    <string name="temperature_5">0</string>
+    <string name="temperature_6">4</string>
+    <string name="temperature_7">-1</string>
+
 </resources>

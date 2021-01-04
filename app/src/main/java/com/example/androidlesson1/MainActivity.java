@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         temperature_N = findViewById(R.id.Temperature_1);
         weatherPicture_N = findViewById(R.id.WeatherPicture_1);
 
-        date_0.setText(date_N.getText() + " года, " +  dayOfWeek_N.getText());
+        date_0.setText(date_N.getText() + ", " +  dayOfWeek_N.getText());
         temperature_0.setText(temperature_N.getText());
 
         Drawable drawable = weatherPicture_N.getDrawable();
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         temperature_N = findViewById(R.id.Temperature_2);
         weatherPicture_N = findViewById(R.id.WeatherPicture_2);
 
-        date_0.setText(date_N.getText() + " года, " +  dayOfWeek_N.getText());
+        date_0.setText(date_N.getText() + ", " +  dayOfWeek_N.getText());
         temperature_0.setText(temperature_N.getText());
 
         Drawable drawable = weatherPicture_N.getDrawable();
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         temperature_N = findViewById(R.id.Temperature_3);
         weatherPicture_N = findViewById(R.id.WeatherPicture_3);
 
-        date_0.setText(date_N.getText() + " года, " +  dayOfWeek_N.getText());
+        date_0.setText(date_N.getText() + ", " +  dayOfWeek_N.getText());
         temperature_0.setText(temperature_N.getText());
 
         Drawable drawable = weatherPicture_N.getDrawable();
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         temperature_N = findViewById(R.id.Temperature_4);
         weatherPicture_N = findViewById(R.id.WeatherPicture_4);
 
-        date_0.setText(date_N.getText() + " года, " +  dayOfWeek_N.getText());
+        date_0.setText(date_N.getText() + ", " +  dayOfWeek_N.getText());
         temperature_0.setText(temperature_N.getText());
 
         Drawable drawable = weatherPicture_N.getDrawable();
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         temperature_N = findViewById(R.id.Temperature_5);
         weatherPicture_N = findViewById(R.id.WeatherPicture_5);
 
-        date_0.setText(date_N.getText() + " года, " +  dayOfWeek_N.getText());
+        date_0.setText(date_N.getText() + ", " +  dayOfWeek_N.getText());
         temperature_0.setText(temperature_N.getText());
 
         Drawable drawable = weatherPicture_N.getDrawable();
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         temperature_N = findViewById(R.id.Temperature_6);
         weatherPicture_N = findViewById(R.id.WeatherPicture_6);
 
-        date_0.setText(date_N.getText() + " года, " +  dayOfWeek_N.getText());
+        date_0.setText(date_N.getText() + ", " +  dayOfWeek_N.getText());
         temperature_0.setText(temperature_N.getText());
 
         Drawable drawable = weatherPicture_N.getDrawable();
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         temperature_N = findViewById(R.id.Temperature_7);
         weatherPicture_N = findViewById(R.id.WeatherPicture_7);
 
-        date_0.setText(date_N.getText() + " года, " +  dayOfWeek_N.getText());
+        date_0.setText(date_N.getText() + ", " +  dayOfWeek_N.getText());
         temperature_0.setText(temperature_N.getText());
 
         Drawable drawable = weatherPicture_N.getDrawable();
