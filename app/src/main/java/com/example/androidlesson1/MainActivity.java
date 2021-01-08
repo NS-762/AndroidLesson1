@@ -1,10 +1,12 @@
 package com.example.androidlesson1;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +17,11 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Constants {
+
+    private final int REQUEST_SETTINGS_ACTIVITY = 1;
+
+    private TextView city;
 
     private TextView date_0;
     private TextView temperature_0;
@@ -28,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView temperature_N;
     private ImageView weatherPicture_N;
 
+    private ImageView imageSettings;
+
     private String text_for_date_0;
     private String text_for_temperature_0;
 
@@ -36,10 +44,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        city = findViewById(R.id.City_0);
+
         date_0 = findViewById(R.id.Date_0);
         temperature_0 = findViewById(R.id.Temperature_0);
         weatherPicture_0 = findViewById(R.id.WeatherPicture_0);
         linearLayout_1 = findViewById(R.id.LinearLayout_1);
+
+        imageSettings = findViewById(R.id.ImageSettings);
 
 
         if (savedInstanceState == null) { //если запуск первый, то в шапку будут выведены данные из первого дня списка (типа это сегодняшний день)
@@ -48,6 +60,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onClickImageSettings(View view) {
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if(requestCode == REQUEST_SETTINGS_ACTIVITY && resultCode == RESULT_OK) {
+            Toast.makeText(getApplicationContext(), "Сюда зашли", Toast.LENGTH_SHORT).show();
+            city.setText(data.getStringExtra(CITY_NAME));
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+        return;
+    }
 
     public void onClickLinerLayout_1(View view) {
         date_N = findViewById(R.id.Date_1);
