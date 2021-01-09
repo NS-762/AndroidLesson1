@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -44,33 +45,21 @@ public class MainActivity extends AppCompatActivity implements Constants {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        city = findViewById(R.id.City_0);
-
-        date_0 = findViewById(R.id.Date_0);
-        temperature_0 = findViewById(R.id.Temperature_0);
-        weatherPicture_0 = findViewById(R.id.WeatherPicture_0);
-        linearLayout_1 = findViewById(R.id.LinearLayout_1);
-
-        imageSettings = findViewById(R.id.ImageSettings);
-
-
-        if (savedInstanceState == null) { //если запуск первый, то в шапку будут выведены данные из первого дня списка (типа это сегодняшний день)
-            onClickLinerLayout_1(linearLayout_1);
-        }
 
     }
+
 
     public void onClickImageSettings(View view) {
-        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-        startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY);
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class); //создание интента для окна настроек
+        startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
     }
 
+  /*
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { //сюда приходит результат из настроек
 
-        if(requestCode == REQUEST_SETTINGS_ACTIVITY && resultCode == RESULT_OK) {
-            Toast.makeText(getApplicationContext(), "Сюда зашли", Toast.LENGTH_SHORT).show();
-            city.setText(data.getStringExtra(CITY_NAME));
+        if(requestCode == REQUEST_SETTINGS_ACTIVITY && resultCode == RESULT_OK) { //проверка, что окно отработало нормально
+            city.setText(data.getStringExtra(CITY_NAME)); //поменять имя города на пришедшее
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -190,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
     }
 
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) { //загрузка состояния окна
         super.onRestoreInstanceState(savedInstanceState);
         Toast.makeText(getApplicationContext(), "onRestoreInstanceState", Toast.LENGTH_SHORT).show();
 
@@ -205,13 +194,16 @@ public class MainActivity extends AppCompatActivity implements Constants {
     }
 
     @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) { //сохранение состояния окна
         super.onSaveInstanceState(outState);
         Toast.makeText(getApplicationContext(), "onSaveInstanceState", Toast.LENGTH_SHORT).show();
 
         outState.putString("TEXT_FOR_DATE_0", text_for_date_0); //для сохранения даты
         outState.putString("TEXT_FOR_TEMPERATURE_0", text_for_temperature_0); //для сохранения температуры
+
         SingletonForImage.getInstance().setWeatherPicture_0(weatherPicture_0); //сохранить изображение из шапки в синглтон
 
-    }
+    }*/
+
+
 }
