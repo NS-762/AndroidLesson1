@@ -27,7 +27,7 @@ public class SettingsActivity extends AppCompatActivity implements Constants {
             @Override
             public void onClick(View v) {
                 Intent intentResult = new Intent(); //создание интента
-                intentResult.putExtra(CITY_NAME, city_entry.getText().toString()); //запись в интент названия города с пометкой CITY_NAME
+                intentResult.putExtra(CITY, city_entry.getText().toString()); //запись в интент названия города с пометкой CITY_NAME
                 setResult(RESULT_OK, intentResult); //установка результата RESULT_OK и отправка интента
                 finish(); //закрытие окна
             }

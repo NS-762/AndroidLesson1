@@ -6,17 +6,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FragmentBottom"
 
-    android:id="@+id/LinearLayout_Bottom"
+    android:id="@+id/Linear_layout_bottom"
 
     android:layout_margin="10dp"
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/LinearLayout_1"
+        android:id="@+id/linear_layout_1"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/background_dark"
-        android:onClick="onClickLinerLayout_1"
+
         android:orientation="horizontal">
 
         <LinearLayout
@@ -26,7 +26,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/Date_1"
+                android:id="@+id/date_1"
                 android:layout_width="match_parent"
                 android:layout_height="51dp"
                 android:layout_marginStart="5dp"
@@ -36,7 +36,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/DayOfWeek_1"
+                android:id="@+id/day_of_week_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -46,14 +46,14 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/WeatherPicture_1"
+            android:id="@+id/weather_picture_1"
             android:layout_width="82dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/rain" />
 
         <TextView
-            android:id="@+id/Temperature_1"
+            android:id="@+id/temperature_1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
@@ -65,11 +65,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/LinearLayout_2"
+        android:id="@+id/linear_layout_2"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/background_light"
-        android:onClick="onClickLinerLayout_2"
+        android:onClick="onClickLinearLayoutTwo"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -79,7 +79,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/Date_2"
+                android:id="@+id/date_2"
                 android:layout_width="match_parent"
                 android:layout_height="51dp"
                 android:layout_marginStart="5dp"
@@ -89,7 +89,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/DayOfWeek_2"
+                android:id="@+id/day_of_week_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -99,14 +99,14 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/WeatherPicture_2"
+            android:id="@+id/weather_picture_2"
             android:layout_width="82dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/snowing" />
 
         <TextView
-            android:id="@+id/Temperature_2"
+            android:id="@+id/temperature_2"
             android:layout_width="13dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
@@ -118,11 +118,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/LinearLayout_3"
+        android:id="@+id/linear_layout_3"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/background_dark"
-        android:onClick="onClickLinerLayout_3"
+        android:onClick="onClickLinearLayoutThree"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -132,7 +132,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/Date_3"
+                android:id="@+id/date_3"
                 android:layout_width="match_parent"
                 android:layout_height="51dp"
                 android:layout_marginStart="5dp"
@@ -142,7 +142,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/DayOfWeek_3"
+                android:id="@+id/day_of_week_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -152,14 +152,14 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/WeatherPicture_3"
+            android:id="@+id/weather_picture_3"
             android:layout_width="82dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/storm" />
 
         <TextView
-            android:id="@+id/Temperature_3"
+            android:id="@+id/temperature_3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
@@ -171,11 +171,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/LinearLayout_4"
+        android:id="@+id/linear_layout_4"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/background_light"
-        android:onClick="onClickLinerLayout_4"
+        android:onClick="onClickLinearLayoutFour"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -185,7 +185,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/Date_4"
+                android:id="@+id/date_4"
                 android:layout_width="match_parent"
                 android:layout_height="51dp"
                 android:layout_marginStart="5dp"
@@ -195,7 +195,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/DayOfWeek_4"
+                android:id="@+id/day_of_week_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -205,14 +205,14 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/WeatherPicture_4"
+            android:id="@+id/weather_picture_4"
             android:layout_width="82dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/snowflake" />
 
         <TextView
-            android:id="@+id/Temperature_4"
+            android:id="@+id/temperature_4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
@@ -224,11 +224,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/LinearLayout_5"
+        android:id="@+id/linear_layout_5"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/background_dark"
-        android:onClick="onClickLinerLayout_5"
+        android:onClick="onClickLinearLayoutFive"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -238,7 +238,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/Date_5"
+                android:id="@+id/date_5"
                 android:layout_width="match_parent"
                 android:layout_height="51dp"
                 android:layout_marginStart="5dp"
@@ -248,7 +248,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/DayOfWeek_5"
+                android:id="@+id/day_of_week_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -258,14 +258,14 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/WeatherPicture_5"
+            android:id="@+id/weather_picture_5"
             android:layout_width="82dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/rain2" />
 
         <TextView
-            android:id="@+id/Temperature_5"
+            android:id="@+id/temperature_5"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
@@ -277,11 +277,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/LinearLayout_6"
+        android:id="@+id/linear_layout_6"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/background_light"
-        android:onClick="onClickLinerLayout_6"
+        android:onClick="onClickLinearLayoutSix"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -291,7 +291,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/Date_6"
+                android:id="@+id/date_6"
                 android:layout_width="match_parent"
                 android:layout_height="51dp"
                 android:layout_marginStart="5dp"
@@ -301,7 +301,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/DayOfWeek_6"
+                android:id="@+id/day_of_week_6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -311,14 +311,14 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/WeatherPicture_6"
+            android:id="@+id/weather_picture_6"
             android:layout_width="82dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/sun" />
 
         <TextView
-            android:id="@+id/Temperature_6"
+            android:id="@+id/temperature_6"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
@@ -330,11 +330,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/LinearLayout_7"
+        android:id="@+id/linear_layout_7"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/background_dark"
-        android:onClick="onClickLinerLayout_7"
+        android:onClick="onClickLinearLayoutSeven"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -344,7 +344,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/Date_7"
+                android:id="@+id/date_7"
                 android:layout_width="match_parent"
                 android:layout_height="51dp"
                 android:layout_marginStart="5dp"
@@ -354,7 +354,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/DayOfWeek_7"
+                android:id="@+id/day_of_week_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -364,14 +364,14 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/WeatherPicture_7"
+            android:id="@+id/weather_picture_7"
             android:layout_width="82dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/rain1" />
 
         <TextView
-            android:id="@+id/Temperature_7"
+            android:id="@+id/temperature_7"
             android:layout_width="13dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"

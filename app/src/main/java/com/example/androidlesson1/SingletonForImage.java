@@ -6,17 +6,17 @@ import android.widget.ImageView;
 public final class SingletonForImage {
 
     private static SingletonForImage instance = null;
-    private ImageView weatherPicture_0;
+    private ImageView weather_picture_0;
 
     private SingletonForImage() {
     }
 
-    public void setWeatherPicture_0(ImageView weatherPicture_0) {
-        this.weatherPicture_0 = weatherPicture_0;
+    public void setweather_picture_0(ImageView weather_picture_0) {
+        this.weather_picture_0 = weather_picture_0;
     }
 
-    public ImageView getWeatherPicture_0() {
-        return weatherPicture_0;
+    public ImageView getweather_picture_0() {
+        return weather_picture_0;
     }
 
     public static SingletonForImage getInstance() {
