@@ -27,19 +27,17 @@
                 android:onClick="onClickImageSettings"
                 app:srcCompat="@drawable/settings2" />
 
-            <fragment
-                android:id="@+id/fragment_top"
-                android:name="com.example.androidlesson1.FragmentTop"
+            <FrameLayout
+                android:id="@+id/container_top"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_margin="10dp"></fragment>
+                android:layout_margin="10dp"></FrameLayout>
 
-            <fragment
-                android:id="@+id/fragment_bottom"
-                android:name="com.example.androidlesson1.FragmentBottom"
+            <FrameLayout
+                android:id="@+id/container_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"></fragment>
+                android:layout_margin="10dp"></FrameLayout>
 
 
         </LinearLayout>

@@ -28,6 +28,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
     private String newDate;
 
 
+
     public static FragmentTop create() { //фабричный метод
         FragmentTop fragmentTop = new FragmentTop();
         Bundle args = new Bundle();
@@ -47,8 +48,10 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
         dateTextView = view.findViewById(R.id.date_0);
         cityTextView = view.findViewById(R.id.city_0);
 
+
         LinearLayout linearLayout = view.findViewById(R.id.linear_layout_0);
         linearLayout.setOnClickListener(new View.OnClickListener() {
+
 
             @Override
             public void onClick(View v) {

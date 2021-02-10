@@ -41,9 +41,10 @@ public class MainActivity extends AppCompatActivity implements Constants, Publis
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                 .beginTransaction();
-        fragmentTransaction.add(R.id.fragment_bottom, fragmentBottom);
-        fragmentTransaction.add(R.id.fragment_top, fragmentTop);
+        fragmentTransaction.add(R.id.container_bottom, fragmentBottom);
+        fragmentTransaction.add(R.id.container_top, fragmentTop);
         fragmentTransaction.commit();
+
 
         publisher.addSubscriber(fragmentTop);
     }
