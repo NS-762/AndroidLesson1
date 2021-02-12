@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linear_layout_0"
     android:layout_width="match_parent"
-
     android:layout_height="200dp"
     android:background="@color/background_dark"
     android:orientation="vertical"
-    tools:context=".FragmentTop">
+    tools:context=".WorkingWithFragments.FragmentTop">
 
     <TextView
         android:id="@+id/city_0"
@@ -16,7 +15,6 @@
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal|center_vertical"
-        android:onClick="onClickCity"
         android:text="@string/city"
         android:textColor="@color/text_color"
         android:textSize="30sp"

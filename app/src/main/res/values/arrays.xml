@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="date">
+        <item>@string/date_1</item>
+        <item>@string/date_2</item>
+        <item>@string/date_3</item>
+        <item>@string/date_4</item>
+        <item>@string/date_5</item>
+        <item>@string/date_6</item>
+        <item>@string/date_7</item>
+    </string-array>
+
+    <string-array name="day_of_week">
+        <item>@string/day_of_week_1</item>
+        <item>@string/day_of_week_2</item>
+        <item>@string/day_of_week_3</item>
+        <item>@string/day_of_week_4</item>
+        <item>@string/day_of_week_5</item>
+        <item>@string/day_of_week_6</item>
+        <item>@string/day_of_week_7</item>
+    </string-array>
+
+    <string-array name="temperature">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <array name="weather_picture">
+        <item>@drawable/rain</item>
+        <item>@drawable/snowflake</item>
+        <item>@drawable/sun</item>
+        <item>@drawable/night</item>
+        <item>@drawable/snowing</item>
+        <item>@drawable/rain2</item>
+        <item>@drawable/storm</item>
+    </array>
+
+</resources>

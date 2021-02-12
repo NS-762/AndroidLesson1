@@ -1,24 +1,16 @@
 package com.example.androidlesson1;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.os.PersistableBundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
+
+import com.example.androidlesson1.WorkingWithFragments.FragmentBottom;
+import com.example.androidlesson1.WorkingWithFragments.FragmentTop;
+import com.example.androidlesson1.WorkingWithFragments.Publisher;
+import com.example.androidlesson1.WorkingWithFragments.PublisherGetter;
 
 public class MainActivity extends AppCompatActivity implements Constants, PublisherGetter {
 
@@ -45,9 +37,10 @@ public class MainActivity extends AppCompatActivity implements Constants, Publis
         fragmentTransaction.add(R.id.container_top, fragmentTop);
         fragmentTransaction.commit();
 
-
         publisher.addSubscriber(fragmentTop);
+
     }
+
 
     @Override
     public Publisher getPublisher() {
@@ -58,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements Constants, Publis
         Intent intent = new Intent(getApplicationContext(), SettingsActivity.class); //создание интента для окна настроек
         startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
     }
+
+
+
+
 
   /*
     @Override

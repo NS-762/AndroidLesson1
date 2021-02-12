@@ -1,4 +1,6 @@
-package com.example.androidlesson1;
+package com.example.androidlesson1.WorkingWithFragments;
+
+import android.graphics.drawable.Drawable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +21,9 @@ public class Publisher {
         subscribers.add(subscriber);
     }
 
-    public void notifySubscriber(String temperature, String date, String dayOfWeek) {
+    public void notifySubscriber(String newDate, String newDayOfWeek, String newTemperature, Drawable newWeatherPicture) {
         for (Subscriber s : subscribers) {
-            s.updateData(temperature, date, dayOfWeek);
+            s.updateData(newDate, newDayOfWeek, newTemperature, newWeatherPicture);
         }
     }
 }

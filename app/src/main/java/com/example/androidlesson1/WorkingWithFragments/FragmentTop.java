@@ -1,9 +1,10 @@
-package com.example.androidlesson1;
+package com.example.androidlesson1.WorkingWithFragments;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +13,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.androidlesson1.Constants;
+import com.example.androidlesson1.R;
+
 public class FragmentTop extends Fragment implements Constants, Subscriber {
 
-    private String city;
-    private String temperature;
-    private String date;
-    private String dayOfWeek;
     private ImageView weatherPicture;
 
     private TextView cityTextView;
     private TextView temperatureTextView;
     private TextView dateTextView;
 
-    private String newTemperature = "ahaha";
-    private String newDate;
 
 
 
@@ -47,20 +45,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
         temperatureTextView = view.findViewById(R.id.temperature_0);
         dateTextView = view.findViewById(R.id.date_0);
         cityTextView = view.findViewById(R.id.city_0);
-
-
-        LinearLayout linearLayout = view.findViewById(R.id.linear_layout_0);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-
-
-            @Override
-            public void onClick(View v) {
-                temperatureTextView.setText(newTemperature);
-                dateTextView.setText(newDate);
-            }
-        });
-
-
+        weatherPicture = view.findViewById(R.id.weather_picture_0);
         return view;
     }
 
@@ -85,17 +70,13 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
     }*/
 
     @Override
-    public void updateData(String temperature, String date, String dayOfWeek) {
-        Toast.makeText(getActivity(), "Метод из класса верхнего фрагмента", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(), temperature, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(), date, Toast.LENGTH_SHORT).show();
+    public void updateData(String newDate, String newDayOfWeek, String newTemperature, Drawable newWeatherPicture) {
 
-        newTemperature = temperature;
-        newDate = date + ", " + dayOfWeek;
-
+        dateTextView.setText(newDate + ", " + newDayOfWeek);
         temperatureTextView.setText(newTemperature);
-        dateTextView.setText(newDate);
+        weatherPicture.setImageDrawable(newWeatherPicture);
     }
+
 
 
 }

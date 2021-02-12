@@ -1,4 +1,4 @@
-package com.example.androidlesson1;
+package com.example.androidlesson1.WorkingWithFragments;
 
 public interface PublisherGetter {
 
