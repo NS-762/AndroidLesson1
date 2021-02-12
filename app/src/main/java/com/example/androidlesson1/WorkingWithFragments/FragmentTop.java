@@ -24,9 +24,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
     private TextView temperatureTextView;
     private TextView dateTextView;
 
-
-
-
     public static FragmentTop create() { //фабричный метод
         FragmentTop fragmentTop = new FragmentTop();
         Bundle args = new Bundle();
@@ -34,7 +31,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
 
         return fragmentTop;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,7 +72,4 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
         temperatureTextView.setText(newTemperature);
         weatherPicture.setImageDrawable(newWeatherPicture);
     }
-
-
-
 }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,8 +30,6 @@ public class FragmentBottom extends Fragment {
 
     private Publisher publisher;
 
-//    private List<Subscriber> subscribers = new ArrayList<>();
-
     public static FragmentBottom create() { //фабричный метод
         FragmentBottom fragmentBottom = new FragmentBottom();
         Bundle args = new Bundle();
@@ -44,7 +41,6 @@ public class FragmentBottom extends Fragment {
 
         return fragmentBottom;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -72,9 +68,5 @@ public class FragmentBottom extends Fragment {
 
         SocnetAdapter adapter  = new SocnetAdapter(socSource, publisher);
         recyclerView.setAdapter(adapter);
-
-
-
     }
-
 }

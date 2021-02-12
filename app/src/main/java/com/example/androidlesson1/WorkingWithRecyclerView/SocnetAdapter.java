@@ -1,6 +1,5 @@
 package com.example.androidlesson1.WorkingWithRecyclerView;
 
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidlesson1.MainActivity;
 import com.example.androidlesson1.R;
 import com.example.androidlesson1.WorkingWithFragments.Publisher;
 
@@ -35,16 +32,13 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
-        /*if ()*/
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull SocnetAdapter.ViewHolder holder, int position) {
         Soc soc = socSource.getSoc(position);
-
         holder.setData(soc.getDate(), soc.getDayOfWeek(), soc.getTemperature(), soc.getWeatherPicture());
-
     }
 
     @Override
@@ -76,7 +70,6 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
             linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("SocnetAdapter", "НАЖАТО");
                     publisher.notifySubscriber(date.getText().toString(),
                             dayOfWeek.getText().toString(),
                             temperature.getText().toString(),
@@ -85,7 +78,6 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
             });
 
         }
-
 
         public void setData(String date, String dayOfWeek, String temperature, int weatherPicture) {
             getDate().setText(date);
@@ -110,10 +102,6 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
         public ImageView getWeatherPicture() {
             return weatherPicture;
         }
-
-
-
-
     }
 
 }
