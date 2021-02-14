@@ -31,6 +31,13 @@
     <string name="temperature_5">0</string>
     <string name="temperature_6">4</string>
     <string name="temperature_7">-1</string>
+
+    <string name="city_0">Select city</string>
+    <string name="city_1">Moscow</string>
+    <string name="city_2">St. Petersburg</string>
+    <string name="city_3">Stavropol</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

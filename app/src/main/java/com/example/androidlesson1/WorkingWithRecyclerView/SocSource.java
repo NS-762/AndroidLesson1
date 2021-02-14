@@ -17,7 +17,6 @@ public class SocSource { //заполнения массива данными д
     public SocSource(Resources resources) {
         dataSource = new ArrayList<>(7);
         this.resources = resources;
-
     }
 
     public SocSource build() {
@@ -29,7 +28,6 @@ public class SocSource { //заполнения массива данными д
         for (int i = 0; i < dates.length; i++) {
             dataSource.add(new Soc(dates[i], dayOfWeeks[i], temperatures[i], weatherPictures[i]));
         }
-
         return this;
     }
 

@@ -1,22 +1,21 @@
 package com.example.androidlesson1;
 
-import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 public final class SingletonForImage {
 
     private static SingletonForImage instance = null;
-    private ImageView weather_picture_0;
+    private ImageView weatherPicture;
 
     private SingletonForImage() {
     }
 
-    public void setweather_picture_0(ImageView weather_picture_0) {
-        this.weather_picture_0 = weather_picture_0;
+    public void setWeatherPicture(ImageView weatherPicture) {
+        this.weatherPicture = weatherPicture;
     }
 
-    public ImageView getweather_picture_0() {
-        return weather_picture_0;
+    public ImageView getWeatherPicture() {
+        return weatherPicture;
     }
 
     public static SingletonForImage getInstance() {

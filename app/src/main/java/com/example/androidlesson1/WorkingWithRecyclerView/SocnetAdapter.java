@@ -1,10 +1,8 @@
 package com.example.androidlesson1.WorkingWithRecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,17 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidlesson1.R;
-import com.example.androidlesson1.WorkingWithFragments.Publisher;
+import com.example.androidlesson1.WorkingWithFragments.ItemClickListener;
 
 public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder> {
 
     private SocSource socSource;
-    private AdapterView.OnItemClickListener itemClickListener;
-    private Publisher publisher;
+    private ItemClickListener itemClickListener;
 
-    public SocnetAdapter(SocSource socSource, Publisher publisher) {
+    public SocnetAdapter(SocSource socSource, ItemClickListener itemClickListener) {
         this.socSource = socSource;
-        this.publisher = publisher;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -46,11 +43,6 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
         return socSource.size();
     }
 
-    public void SetOnItemClickListener(AdapterView.OnItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
-    }
-
-
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView date;
@@ -70,7 +62,7 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
             linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    publisher.notifySubscriber(date.getText().toString(),
+                    itemClickListener.notifySubscribers(date.getText().toString(),
                             dayOfWeek.getText().toString(),
                             temperature.getText().toString(),
                             weatherPicture.getDrawable());

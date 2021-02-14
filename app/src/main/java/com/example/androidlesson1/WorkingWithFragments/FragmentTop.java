@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
@@ -19,7 +17,6 @@ import com.example.androidlesson1.R;
 public class FragmentTop extends Fragment implements Constants, Subscriber {
 
     private ImageView weatherPicture;
-
     private TextView cityTextView;
     private TextView temperatureTextView;
     private TextView dateTextView;
@@ -28,7 +25,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
         FragmentTop fragmentTop = new FragmentTop();
         Bundle args = new Bundle();
         fragmentTop.setArguments(args);
-
         return fragmentTop;
     }
 
@@ -71,5 +67,9 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
         dateTextView.setText(newDate + ", " + newDayOfWeek);
         temperatureTextView.setText(newTemperature);
         weatherPicture.setImageDrawable(newWeatherPicture);
+    }
+
+    public void updateSettings(String newCity) { //то, что меняется в настройках приложения
+        cityTextView.setText(newCity);
     }
 }

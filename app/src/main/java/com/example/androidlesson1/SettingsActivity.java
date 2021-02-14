@@ -31,9 +31,7 @@ public class SettingsActivity extends AppCompatActivity implements Constants {
                 finish(); //закрытие окна
             }
         });
-
     }
-
 
     public void onClickCity_1(View view) {
         city_N = findViewById(R.id.City_1);
@@ -49,5 +47,4 @@ public class SettingsActivity extends AppCompatActivity implements Constants {
         city_N = findViewById(R.id.City_3);
         city_entry.setText(city_N.getText());
     }
-
 }

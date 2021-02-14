@@ -7,5 +7,4 @@ public interface Constants {
     String DATE = "date";
     String DAY_OF_WEEK = "dayOfWeek";
     String WEATHER_PICTURE = "weatherPicture";
-
 }

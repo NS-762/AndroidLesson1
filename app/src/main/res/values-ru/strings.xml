@@ -33,4 +33,10 @@
     <string name="temperature_6">4</string>
     <string name="temperature_7">-1</string>
 
+
+    <string name="city_0">Выберите город</string>
+    <string name="city_1">Москва</string>
+    <string name="city_2">Санкт-Петербург</string>
+    <string name="city_3">Ставрополь</string>
+
 </resources>

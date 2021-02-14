@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -61,7 +60,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@color/background_dark"
-                    android:text="Выберите город"
+                    android:text="@string/city_0"
                     android:textColor="@color/text_color" />
 
                 <EditText
@@ -71,7 +70,7 @@
                     android:layout_marginStart="6dp"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Москва"
+                    android:text="@string/city_1"
                     android:textColor="@color/text_color" />
             </LinearLayout>
 
@@ -88,7 +87,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical"
                     android:onClick="onClickCity_1"
-                    android:text="Москва"
+                    android:text="@string/city_1"
                     android:textColor="@color/text_color"
                     android:textSize="20sp" />
 
@@ -100,7 +99,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical"
                     android:onClick="onClickCity_2"
-                    android:text="Санкт-Петербург"
+                    android:text="@string/city_2"
                     android:textColor="@color/text_color"
                     android:textSize="20sp" />
 
@@ -112,13 +111,14 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical"
                     android:onClick="onClickCity_3"
-                    android:text="Ставрополь"
+                    android:text="@string/city_3"
                     android:textColor="@color/text_color"
                     android:textSize="20sp" />
 
             </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
 
     <Button
