@@ -50,7 +50,12 @@ public class MainActivity extends AppCompatActivity implements Constants, Publis
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { //сюда приходит результат из настроек
 
         if (requestCode == REQUEST_SETTINGS_ACTIVITY && resultCode == RESULT_OK) { //проверка, что окно отработало нормально
-            fragmentTop.updateSettings(data.getStringExtra(CITY));
+
+            String newCity = data.getStringExtra(CITY);
+            if (newCity.replaceAll("\\s+","").equals("")) { //если в настройках не был выбран город или введна пустота
+                newCity = getString(R.string.city_1); //по умолчанию ставится Москва
+            }
+            fragmentTop.updateSettings(newCity);
         }
 
         super.onActivityResult(requestCode, resultCode, data);
