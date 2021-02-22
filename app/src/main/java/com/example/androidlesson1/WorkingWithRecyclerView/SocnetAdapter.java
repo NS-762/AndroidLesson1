@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidlesson1.R;
 import com.example.androidlesson1.WorkingWithFragments.ItemClickListener;
+import com.google.android.material.snackbar.Snackbar;
 
 public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder> {
 
@@ -66,6 +67,8 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
                             dayOfWeek.getText().toString(),
                             temperature.getText().toString(),
                             weatherPicture.getDrawable());
+                    Snackbar.make(itemView, "Сохранение настроек", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
                 }
             });
 

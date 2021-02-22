@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.regex.Pattern;
@@ -16,7 +18,7 @@ public class SettingsActivity extends AppCompatActivity implements Constants {
 
     private TextInputEditText selectCity;
     private TextView city_N;
-    private Button saveSettings;
+    private MaterialButton saveSettings;
 
     Pattern patternCheckCity = Pattern.compile("^[A-Z][a-z]{2,}$");
 
@@ -36,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity implements Constants {
                     tv.setError(null); //если соответствует, то ошибка убирается
                 } else {
                     tv.setError("Error!");
+                    saveSettings.setBackgroundColor(123);
                 }
             }
         });
@@ -47,6 +50,8 @@ public class SettingsActivity extends AppCompatActivity implements Constants {
                 Intent intentResult = new Intent(); //создание интента
                 intentResult.putExtra(CITY, selectCity.getText().toString()); //запись в интент названия города с пометкой CITY_NAME
                 setResult(RESULT_OK, intentResult); //установка результата RESULT_OK и отправка интента
+//                Snackbar.make(v, "Сохранение настроек", Snackbar.LENGTH_SHORT)
+//                        .setAction("Action", null).show();
                 finish(); //закрытие окна
             }
         });

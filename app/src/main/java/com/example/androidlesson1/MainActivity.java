@@ -3,10 +3,14 @@ package com.example.androidlesson1;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.androidlesson1.WorkingWithFragments.FragmentBottom;
@@ -62,7 +66,27 @@ public class MainActivity extends AppCompatActivity implements Constants, Publis
         return;
     }
 
-  /*
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //обработка нажатий на пункты меню
+
+        int id = item.getItemId();
+        if (id == R.id.menu_settings) {
+            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class); //создание интента для окна настроек
+            startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /*
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) { //загрузка состояния окна
         super.onRestoreInstanceState(savedInstanceState);

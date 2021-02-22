@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="settings">Settings</string>
+
     <string name="app_name">AndroidLesson1</string>
     <string name="city">Moscow</string>
 
@@ -32,10 +35,17 @@
     <string name="temperature_6">4</string>
     <string name="temperature_7">-1</string>
 
+
+    //для окна настроек
+    <string name="dark_theme">Dark theme</string>
+    <string name="GPS">BY CURRENT GPS COORDINATES</string>
+
     <string name="select_city">Select city</string>
     <string name="city_1">Moscow</string>
     <string name="city_2">St. Petersburg</string>
     <string name="city_3">Stavropol</string>
+
+    <string name="save_and_out">Save and out</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

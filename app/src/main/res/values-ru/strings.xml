@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="settings">Настройки</string>
+
     <string name="app_name">AndroidLesson1</string>
     <string name="city">Москва</string>
 
@@ -34,9 +37,15 @@
     <string name="temperature_7">-1</string>
 
 
+    //для окна настроек
+    <string name="dark_theme">Темная тема</string>
+    <string name="GPS">ПО ТЕКУЩИМ GPS КООРДИНАТАМ</string>
+
     <string name="select_city">Выберите город</string>
     <string name="city_1">Москва</string>
     <string name="city_2">Санкт-Петербург</string>
     <string name="city_3">Ставрополь</string>
+
+    <string name="save_and_out">Сохранить и выйти</string>
 
 </resources>
