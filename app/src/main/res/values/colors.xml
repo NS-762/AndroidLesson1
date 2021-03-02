@@ -9,8 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="background_dark">#FFAFAEAE</color>
-    <color name="background_light">#FFD3D1D1</color>
+    <color name="background_dark">#33374E</color>
+<!--    <color name="background_light">#BEBCB9</color>-->
+    <color name="background_light">#99A0929E</color>
     <color name="text_color">#FF303030</color>
 
 </resources>

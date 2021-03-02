@@ -38,7 +38,7 @@
 
 
     //для окна настроек
-    <string name="dark_theme">Темная тема</string>
+    <string name="light_theme">Светлая тема</string>
     <string name="GPS">ПО ТЕКУЩИМ GPS КООРДИНАТАМ</string>
 
     <string name="select_city">Выберите город</string>

@@ -6,8 +6,8 @@
     tools:context=".WorkingWithFragments.FragmentBottom"
 
     android:id="@+id/linear_layout_bottom"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:alpha="0.9" >
 
 
     <androidx.recyclerview.widget.RecyclerView

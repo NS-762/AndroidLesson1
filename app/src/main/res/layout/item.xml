@@ -11,7 +11,8 @@
         android:layout_height="70dp"
         android:layout_marginTop="10dp"
 
-        android:background="@color/background_dark"
+        android:background="@drawable/linearlayout_background"
+
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +28,7 @@
                 android:id="@+id/date_in_item"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:gravity="bottom"
                 android:text="@string/date_1"
                 android:textColor="@color/text_color"
@@ -37,7 +38,7 @@
                 android:id="@+id/day_of_week_in_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/day_of_week_1"
                 android:textColor="@color/text_color"

@@ -6,38 +6,52 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.androidlesson1.WorkingWithFragments.FragmentBottom;
 import com.example.androidlesson1.WorkingWithFragments.FragmentTop;
 import com.example.androidlesson1.WorkingWithFragments.Publisher;
 import com.example.androidlesson1.WorkingWithFragments.PublisherGetter;
 
-public class MainActivity extends AppCompatActivity implements Constants, PublisherGetter {
+public class MainActivity extends BaseActivity implements Constants, PublisherGetter {
 
     private final int REQUEST_SETTINGS_ACTIVITY = 1;
     private FragmentTop fragmentTop;
     private FragmentBottom fragmentBottom;
     private Publisher publisher = new Publisher();
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragmentTop = FragmentTop.create();
-        fragmentBottom = FragmentBottom.create();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager()
-                .beginTransaction();
-        fragmentTransaction.add(R.id.container_bottom, fragmentBottom);
-        fragmentTransaction.add(R.id.container_top, fragmentTop);
-        fragmentTransaction.commit();
+        Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_SHORT).show();
+
+        if (savedInstanceState != null) {
+            fragmentTop = (FragmentTop) getSupportFragmentManager()
+                    .getFragment(savedInstanceState, "FragmentTop");
+            fragmentBottom = (FragmentBottom) getSupportFragmentManager()
+                    .getFragment(savedInstanceState, "FragmentBottom");
+        } else {
+            fragmentTop = FragmentTop.create();
+            fragmentBottom = FragmentBottom.create();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+                    .beginTransaction();
+            fragmentTransaction.add(R.id.container_top, fragmentTop);
+            fragmentTransaction.add(R.id.container_bottom, fragmentBottom);
+            fragmentTransaction.commit();
+        }
         publisher.addSubscriber(fragmentTop);
+
+
+
     }
 
     @Override
@@ -45,10 +59,6 @@ public class MainActivity extends AppCompatActivity implements Constants, Publis
         return publisher;
     }
 
-    public void onClickImageSettings(View view) {
-        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class); //создание интента для окна настроек
-        startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { //сюда приходит результат из настроек
@@ -56,10 +66,11 @@ public class MainActivity extends AppCompatActivity implements Constants, Publis
         if (requestCode == REQUEST_SETTINGS_ACTIVITY && resultCode == RESULT_OK) { //проверка, что окно отработало нормально
 
             String newCity = data.getStringExtra(CITY);
-            if (newCity.replaceAll("\\s+","").equals("")) { //если в настройках не был выбран город или введна пустота
+            if (newCity.replaceAll("\\s+", "").equals("")) { //если в настройках не был выбран город или введна пустота
                 newCity = getString(R.string.city_1); //по умолчанию ставится Москва
             }
             fragmentTop.updateSettings(newCity);
+            recreate();
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -68,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements Constants, Publis
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
@@ -76,41 +86,49 @@ public class MainActivity extends AppCompatActivity implements Constants, Publis
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { //обработка нажатий на пункты меню
-
         int id = item.getItemId();
         if (id == R.id.menu_settings) {
             Intent intent = new Intent(getApplicationContext(), SettingsActivity.class); //создание интента для окна настроек
             startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    /*
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) { //загрузка состояния окна
-        super.onRestoreInstanceState(savedInstanceState);
-        Toast.makeText(getApplicationContext(), "onRestoreInstanceState", Toast.LENGTH_SHORT).show();
-
-        text_for_date_0 = savedInstanceState.getString("TEXT_FOR_date_0");
-        text_for_temperature_0 = savedInstanceState.getString("TEXT_FOR_temperature_0");
-
-        date_0.setText(text_for_date_0);
-        temperature_0.setText(text_for_temperature_0);
-
-        Drawable drawable = SingletonForImage.getInstance().getweather_picture_0().getDrawable(); //достать изображение из синглтона
-        weather_picture_0.setImageDrawable(drawable);
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(getApplicationContext(), "onStart", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) { //сохранение состояния окна
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(getApplicationContext(), "onPause", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(getApplicationContext(), "onDestroy", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(getApplicationContext(), "onStop", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        Toast.makeText(getApplicationContext(), "onSaveInstanceState", Toast.LENGTH_SHORT).show();
-
-        outState.putString("TEXT_FOR_date_0", text_for_date_0); //для сохранения даты
-        outState.putString("TEXT_FOR_temperature_0", text_for_temperature_0); //для сохранения температуры
-
-        SingletonForImage.getInstance().setweather_picture_0(weather_picture_0); //сохранить изображение из шапки в синглтон
-
-    }*/
+        getSupportFragmentManager().putFragment(outState, "FragmentTop", fragmentTop);
+        getSupportFragmentManager().putFragment(outState, "FragmentBottom", fragmentBottom);
+    }
 }
+

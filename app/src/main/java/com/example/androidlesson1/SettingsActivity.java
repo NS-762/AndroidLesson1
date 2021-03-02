@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
@@ -14,11 +16,12 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.regex.Pattern;
 
-public class SettingsActivity extends AppCompatActivity implements Constants {
+public class SettingsActivity extends BaseActivity implements Constants {
 
     private TextInputEditText selectCity;
     private TextView city_N;
     private MaterialButton saveSettings;
+    private Switch switchDarkTheme;
 
     Pattern patternCheckCity = Pattern.compile("^[A-Z][a-z]{2,}$");
 
@@ -26,6 +29,17 @@ public class SettingsActivity extends AppCompatActivity implements Constants {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        switchDarkTheme = findViewById(R.id.switch_light_theme);
+        switchDarkTheme.setChecked(isDarkTheme());
+        switchDarkTheme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setDarkTheme(isChecked);
+                recreate();
+            }
+        });
+
 
         selectCity = findViewById(R.id.select_city);
         selectCity.setOnFocusChangeListener(new View.OnFocusChangeListener() { //метод вызывает при смене фокуса
@@ -50,9 +64,7 @@ public class SettingsActivity extends AppCompatActivity implements Constants {
                 Intent intentResult = new Intent(); //создание интента
                 intentResult.putExtra(CITY, selectCity.getText().toString()); //запись в интент названия города с пометкой CITY_NAME
                 setResult(RESULT_OK, intentResult); //установка результата RESULT_OK и отправка интента
-//                Snackbar.make(v, "Сохранение настроек", Snackbar.LENGTH_SHORT)
-//                        .setAction("Action", null).show();
-                finish(); //закрытие окна
+                finish();
             }
         });
     }
