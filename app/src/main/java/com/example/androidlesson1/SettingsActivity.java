@@ -9,11 +9,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
-
+import com.google.android.material.snackbar.Snackbar;
 import java.util.regex.Pattern;
 
 public class SettingsActivity extends BaseActivity implements Constants {
@@ -21,7 +22,9 @@ public class SettingsActivity extends BaseActivity implements Constants {
     private TextInputEditText selectCity;
     private TextView city_N;
     private MaterialButton saveSettings;
+    private MaterialButton GPS;
     private Switch switchDarkTheme;
+
 
     Pattern patternCheckCity = Pattern.compile("^[A-Z][a-z]{2,}$");
 
@@ -31,12 +34,22 @@ public class SettingsActivity extends BaseActivity implements Constants {
         setContentView(R.layout.activity_settings);
 
         switchDarkTheme = findViewById(R.id.switch_light_theme);
-        switchDarkTheme.setChecked(isDarkTheme());
+        switchDarkTheme.setChecked(isLightTheme());
         switchDarkTheme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setDarkTheme(isChecked);
+//                Snackbar.make(, "Вы установили светлую тему", Snackbar.LENGTH_SHORT).show();
+                setLightTheme(isChecked);
                 recreate();
+
+            }
+        });
+
+        GPS = findViewById(R.id.GPS);
+        GPS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "Определение текущего местоположения...", Snackbar.LENGTH_LONG).show();
             }
         });
 

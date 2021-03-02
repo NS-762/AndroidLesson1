@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
 
     <ScrollView
@@ -30,7 +29,6 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:text="@string/light_theme"
-                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -46,28 +44,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                android:theme="@style/Theme.AndroidLesson1"
-                />
+                android:theme="@style/Theme.AndroidLesson1" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/background_dark"
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/city_entry"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color">
+                    android:layout_height="wrap_content" >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/select_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/select_city"
-                        android:textColor="@color/text_color" />
+                        android:hint="@string/select_city" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -86,7 +80,6 @@
                     android:gravity="center_vertical"
                     android:onClick="onClickCity_1"
                     android:text="@string/city_1"
-                    android:textColor="@color/text_color"
                     android:textSize="20sp" />
 
                 <TextView
@@ -98,7 +91,6 @@
                     android:gravity="center_vertical"
                     android:onClick="onClickCity_2"
                     android:text="@string/city_2"
-                    android:textColor="@color/text_color"
                     android:textSize="20sp" />
 
                 <TextView
@@ -110,7 +102,6 @@
                     android:gravity="center_vertical"
                     android:onClick="onClickCity_3"
                     android:text="@string/city_3"
-                    android:textColor="@color/text_color"
                     android:textSize="20sp" />
 
             </LinearLayout>

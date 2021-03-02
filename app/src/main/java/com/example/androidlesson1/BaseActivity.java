@@ -13,22 +13,22 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (isDarkTheme()) {
+        if (isLightTheme()) {
             setTheme(R.style.AppLightTheme);
         } else {
             setTheme(R.style.AppTheme);
         }
     }
 
-    protected boolean isDarkTheme() {
+    protected boolean isLightTheme() {
         SharedPreferences sharedPref = getSharedPreferences(NAME_SHARED_PREFERENCE, MODE_PRIVATE);
         return sharedPref.getBoolean(IS_LIGHT_THEME, true);
     }
 
-    protected void setDarkTheme (boolean isDarkTheme) {
+    protected void setLightTheme (boolean isLightTheme) {
         SharedPreferences sharedPref = getSharedPreferences(NAME_SHARED_PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean(IS_LIGHT_THEME, isDarkTheme);
+        editor.putBoolean(IS_LIGHT_THEME, isLightTheme);
         editor.apply();
     }
 }

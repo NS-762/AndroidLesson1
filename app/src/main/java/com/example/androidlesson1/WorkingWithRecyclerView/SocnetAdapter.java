@@ -67,6 +67,7 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
                             dayOfWeek.getText().toString(),
                             temperature.getText().toString(),
                             weatherPicture.getDrawable());
+                    
                 }
             });
 
