@@ -73,42 +73,25 @@
 
                 <TextView
                     android:id="@+id/city_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
                     android:onClick="onClickCity_1"
                     android:text="@string/city_1"
-                    android:textSize="20sp" />
+                    style="@style/ItemCityStyle" />
 
                 <TextView
                     android:id="@+id/city_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
                     android:onClick="onClickCity_2"
                     android:text="@string/city_2"
-                    android:textSize="20sp" />
+                    style="@style/ItemCityStyle" />
 
                 <TextView
                     android:id="@+id/city_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
                     android:onClick="onClickCity_3"
                     android:text="@string/city_3"
-                    android:textSize="20sp" />
+                    style="@style/ItemCityStyle" />
 
             </LinearLayout>
 
         </LinearLayout>
-
-
 
     </ScrollView>
 

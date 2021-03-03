@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--<TextView
+    android:id="@+id/city_3"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="5dp"
+    android:gravity="center_vertical"
+    android:onClick="onClickCity_3"
+    android:text="@string/city_3"
+    android:textSize="20sp" />-->
+
+<style name="ItemCityStyle">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">40dp</item>
+    <item name="android:layout_marginStart">10dp</item>
+    <item name="android:layout_marginTop">5dp</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:textSize">20sp</item>
+</style>
+
+</resources>

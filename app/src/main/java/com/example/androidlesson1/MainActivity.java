@@ -1,18 +1,17 @@
 package com.example.androidlesson1;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.androidlesson1.WorkingWithFragments.FragmentBottom;
 import com.example.androidlesson1.WorkingWithFragments.FragmentTop;
@@ -25,14 +24,14 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
     private FragmentTop fragmentTop;
     private FragmentBottom fragmentBottom;
     private Publisher publisher = new Publisher();
-    private LinearLayout linearLayout;
+    private  int  orientation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_SHORT).show();
 
         if (savedInstanceState != null) {
             fragmentTop = (FragmentTop) getSupportFragmentManager()
@@ -50,9 +49,10 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
         }
         publisher.addSubscriber(fragmentTop);
 
-
-
+        orientationDetermination(); //определение ориентации экрана
+        setBackgroundImage(orientation); //установка фона экрана
     }
+
 
     @Override
     public Publisher getPublisher() {
@@ -76,6 +76,15 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
         super.onActivityResult(requestCode, resultCode, data);
         return;
     }
+    public void orientationDetermination() {
+        Configuration configuration = getResources().getConfiguration();
+        if(configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            orientation = 1;
+        }
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            orientation = 2;
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,33 +104,53 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) { //вызывается при повроте экрана
+        super.onConfigurationChanged(newConfig);
+
+        orientation = newConfig.orientation;
+        setBackgroundImage(newConfig.orientation);
+    }
+
+    private void setBackgroundImage(final int orientation) { //установка фона активити
+        ConstraintLayout constraintLayout;
+        constraintLayout = findViewById(R.id.constraint_layout);
+
+        if  (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            constraintLayout.setBackgroundResource(R.drawable.fon_portrait);
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            constraintLayout.setBackgroundResource(R.drawable.fon_landscape);
+        }
+    }
+
+
+    @Override
     protected void onStart() {
         super.onStart();
-        Toast.makeText(getApplicationContext(), "onStart", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "onStart", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
-        Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT).show();
+//        setBackgroundImage(orientation);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(getApplicationContext(), "onPause", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "onPause", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Toast.makeText(getApplicationContext(), "onDestroy", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "onDestroy", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Toast.makeText(getApplicationContext(), "onStop", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "onStop", Toast.LENGTH_SHORT).show();
     }
 
     @Override
