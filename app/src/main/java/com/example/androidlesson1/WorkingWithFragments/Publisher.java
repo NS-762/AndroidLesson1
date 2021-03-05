@@ -1,4 +1,4 @@
-package com.example.androidlesson1.WorkingWithFragments;
+package com.example.androidlesson1.workingWithFragments;
 
 import android.graphics.drawable.Drawable;
 

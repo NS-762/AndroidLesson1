@@ -1,10 +1,12 @@
-package com.example.androidlesson1;
+package com.example.androidlesson1.activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.androidlesson1.R;
 
 public class BaseActivity extends AppCompatActivity {
     private static final String NAME_SHARED_PREFERENCE = "LOGIN";

@@ -1,4 +1,4 @@
-package com.example.androidlesson1.WorkingWithRecyclerView;
+package com.example.androidlesson1.workingWithRecyclerView;
 
 public class Soc {
     private String date;

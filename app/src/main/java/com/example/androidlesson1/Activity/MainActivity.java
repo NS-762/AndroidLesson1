@@ -1,4 +1,4 @@
-package com.example.androidlesson1;
+package com.example.androidlesson1.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,18 +13,24 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.example.androidlesson1.WorkingWithFragments.FragmentBottom;
-import com.example.androidlesson1.WorkingWithFragments.FragmentTop;
-import com.example.androidlesson1.WorkingWithFragments.Publisher;
-import com.example.androidlesson1.WorkingWithFragments.PublisherGetter;
+import com.example.androidlesson1.Constants;
+import com.example.androidlesson1.R;
+import com.example.androidlesson1.workingWithFragments.FragmentBottom;
+import com.example.androidlesson1.workingWithFragments.FragmentTop;
+import com.example.androidlesson1.workingWithFragments.Publisher;
+import com.example.androidlesson1.workingWithFragments.PublisherGetter;
+
 
 public class MainActivity extends BaseActivity implements Constants, PublisherGetter {
 
     private final int REQUEST_SETTINGS_ACTIVITY = 1;
+
     private FragmentTop fragmentTop;
     private FragmentBottom fragmentBottom;
-    private Publisher publisher = new Publisher();
     private  int  orientation;
+
+
+    private Publisher publisher = new Publisher();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

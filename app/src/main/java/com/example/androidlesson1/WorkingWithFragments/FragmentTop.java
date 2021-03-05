@@ -1,4 +1,4 @@
-package com.example.androidlesson1.WorkingWithFragments;
+package com.example.androidlesson1.workingWithFragments;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
 import com.example.androidlesson1.SingletonForImage;
+import com.example.androidlesson1.workingWithWeatherData.WorkingWithWeatherData;
 import com.google.android.material.snackbar.Snackbar;
 
 public class FragmentTop extends Fragment implements Constants, Subscriber {
@@ -26,7 +27,14 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
     private TextView cityTextView;
     private TextView temperatureTextView;
     private TextView dateTextView;
+    private TextView windTextView;
+    private TextView pressureTextView;
+    private TextView humidityTextView;
+
+
+
     private View view;
+    private WorkingWithWeatherData workingWithWeatherData;
 
     public static FragmentTop create() { //фабричный метод
         FragmentTop fragmentTop = new FragmentTop();
@@ -40,10 +48,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_top, container, false);
-        cityTextView = view.findViewById(R.id.city_0);
-        temperatureTextView = view.findViewById(R.id.temperature_0);
-        dateTextView = view.findViewById(R.id.date_0);
-        weatherPicture = view.findViewById(R.id.weather_picture_0);
+        init();
 
         if (savedInstanceState != null) {
             cityTextView.setText(savedInstanceState.getString(CITY));
@@ -53,6 +58,21 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
             weatherPicture.setImageDrawable(drawable);
         }
         return view;
+    }
+
+    private void init() {
+        cityTextView = view.findViewById(R.id.city_0);
+        temperatureTextView = view.findViewById(R.id.temperature_0);
+        dateTextView = view.findViewById(R.id.date_0);
+        weatherPicture = view.findViewById(R.id.weather_picture_0);
+
+        windTextView = view.findViewById(R.id.wind_0);
+        pressureTextView = view.findViewById(R.id.pressure_0);
+        humidityTextView = view.findViewById(R.id.humidity_0);
+
+        workingWithWeatherData = new WorkingWithWeatherData(cityTextView, temperatureTextView,
+                windTextView, pressureTextView, humidityTextView);
+        workingWithWeatherData.getWeatherData();
     }
 
     @Override

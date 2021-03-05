@@ -1,4 +1,4 @@
-package com.example.androidlesson1.WorkingWithRecyclerView;
+package com.example.androidlesson1.workingWithRecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidlesson1.R;
-import com.example.androidlesson1.WorkingWithFragments.ItemClickListener;
+import com.example.androidlesson1.workingWithFragments.ItemClickListener;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder> {

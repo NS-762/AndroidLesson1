@@ -6,9 +6,9 @@
     <string name="app_name">AndroidLesson1</string>
     <string name="city">Москва</string>
 
-    <string name="wind">3,00</string>
-    <string name="pressure">610</string>
-    <string name="humdity">76</string>
+    <string name="wind">00</string>
+    <string name="pressure">00</string>
+    <string name="humdity">00</string>
 
     <string name="date_0">2 января 2021, суббота</string>
     <string name="date_1">3 января 2021</string>

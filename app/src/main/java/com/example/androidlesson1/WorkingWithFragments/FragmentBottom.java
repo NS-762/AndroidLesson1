@@ -1,4 +1,4 @@
-package com.example.androidlesson1.WorkingWithFragments;
+package com.example.androidlesson1.workingWithFragments;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidlesson1.R;
-import com.example.androidlesson1.WorkingWithRecyclerView.SocSource;
-import com.example.androidlesson1.WorkingWithRecyclerView.SocnetAdapter;
+import com.example.androidlesson1.workingWithRecyclerView.SocSource;
+import com.example.androidlesson1.workingWithRecyclerView.SocnetAdapter;
 
 public class FragmentBottom extends Fragment implements ItemClickListener {
 

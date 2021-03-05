@@ -8,7 +8,7 @@
     android:background="@drawable/linearlayout_background"
     android:orientation="vertical"
     android:alpha="0.9"
-    tools:context=".WorkingWithFragments.FragmentTop">
+    tools:context=".workingWithFragments.FragmentTop">
 
     <TextView
         android:id="@+id/city_0"
@@ -54,7 +54,7 @@
                 android:id="@+id/weather_picture_0"
                 android:layout_width="69dp"
                 android:layout_height="57dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginStart="40dp"
                 app:srcCompat="@drawable/night1" />
         </FrameLayout>
@@ -82,7 +82,7 @@
             app:srcCompat="@drawable/wind" />
 
         <TextView
-            android:id="@+id/wind"
+            android:id="@+id/wind_0"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -100,7 +100,7 @@
             app:srcCompat="@drawable/gauge" />
 
         <TextView
-            android:id="@+id/pressure"
+            android:id="@+id/pressure_0"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -117,7 +117,7 @@
             app:srcCompat="@drawable/drop" />
 
         <TextView
-            android:id="@+id/humidity"
+            android:id="@+id/humidity_0"
             android:layout_width="105dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"

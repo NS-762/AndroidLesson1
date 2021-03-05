@@ -1,4 +1,4 @@
-package com.example.androidlesson1.WorkingWithRecyclerView;
+package com.example.androidlesson1.workingWithRecyclerView;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;

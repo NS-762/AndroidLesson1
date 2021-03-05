@@ -1,20 +1,18 @@
-package com.example.androidlesson1;
+package com.example.androidlesson1.activity;
 
 import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.androidlesson1.Constants;
+import com.example.androidlesson1.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.snackbar.Snackbar;
+
 import java.util.regex.Pattern;
 
 public class SettingsActivity extends BaseActivity implements Constants {
