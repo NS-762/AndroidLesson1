@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.androidlesson1.BuildConfig;
 import com.example.androidlesson1.weatherModel.WeatherRequest;
 import com.google.gson.Gson;
 
@@ -23,7 +24,7 @@ public class WorkingWithWeatherData {
     private static final String TAG = "WEATHER";
     private static final String WEATHER_URL =
             "https://api.openweathermap.org/data/2.5/weather?lat=55.75&lon=37.62&appid=";
-    private static final String WEATHER_API_KEY = "4219fe39ece20b9a2e46b76729303c56";
+//    private static final String WEATHER_API_KEY = "4219fe39ece20b9a2e46b76729303c56";
     private WeatherRequest weatherRequest;
     private CyclicBarrier cyclicBarrier;
 
@@ -39,7 +40,7 @@ public class WorkingWithWeatherData {
 
     public void getWeatherData() {
         try {
-            final URL uri = new URL(WEATHER_URL + WEATHER_API_KEY);
+            final URL uri = new URL(WEATHER_URL + BuildConfig.WEATHER_API_KEY);
 //            final Handler handler = new Handler();
 
 
