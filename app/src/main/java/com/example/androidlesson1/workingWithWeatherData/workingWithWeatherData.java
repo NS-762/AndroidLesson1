@@ -3,8 +3,6 @@ package com.example.androidlesson1.workingWithWeatherData;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
@@ -15,36 +13,34 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.CyclicBarrier;
 import java.util.stream.Collectors;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class WorkingWithWeatherData {
+
     private static final String TAG = "WEATHER";
     private static final String WEATHER_URL =
             "https://api.openweathermap.org/data/2.5/weather?lat=55.75&lon=37.62&appid=";
     private static final String WEATHER_API_KEY = "4219fe39ece20b9a2e46b76729303c56";
-
-    private ImageView weatherPicture;
-    private TextView cityTextView;
-    private TextView temperatureTextView;
-    private TextView windTextView;
-    private TextView pressureTextView;
-    private TextView humidityTextView;
+    private WeatherRequest weatherRequest;
+    private CyclicBarrier cyclicBarrier;
 
 
-    public WorkingWithWeatherData(TextView cityTextView, TextView temperatureTextView, TextView windTextView, TextView pressureTextView, TextView humidityTextView) {
-        this.cityTextView = cityTextView;
-        this.temperatureTextView = temperatureTextView;
-        this.windTextView = windTextView;
-        this.pressureTextView = pressureTextView;
-        this.humidityTextView = humidityTextView;
+    public WorkingWithWeatherData(CyclicBarrier cyclicBarrier) {
+        this.cyclicBarrier = cyclicBarrier;
+    }
+
+
+    public WeatherRequest getWeatherRequest() {
+        return weatherRequest;
     }
 
     public void getWeatherData() {
         try {
             final URL uri = new URL(WEATHER_URL + WEATHER_API_KEY);
-            final Handler handler = new Handler();
+//            final Handler handler = new Handler();
 
 
             new Thread(new Runnable() {
@@ -60,13 +56,16 @@ public class WorkingWithWeatherData {
                                 InputStreamReader(urlConnection.getInputStream()));
                         String result = getLines(in);
                         Gson gson = new Gson();
-                        final WeatherRequest weatherRequest = gson.fromJson(result, WeatherRequest.class);
+                        weatherRequest = gson.fromJson(result, WeatherRequest.class);
+                        cyclicBarrier.await();
+/*
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
                                 displayWeather(weatherRequest);
                             }
                         });
+*/
 
                     } catch (Exception e) {
                         Log.e(TAG, "Fail connection", e);
@@ -85,23 +84,9 @@ public class WorkingWithWeatherData {
         }
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     private String getLines(BufferedReader in) {
         return in.lines().collect(Collectors.joining("\n"));
     }
-
-    public void displayWeather(WeatherRequest weatherRequest) {
-        String city = weatherRequest.getName();
-        int temp = (int)weatherRequest.getMain().getTemp() - 273;
-        int pressure = weatherRequest.getMain().getPressure();
-        int humidity = weatherRequest.getMain().getHumidity();
-        int wind = weatherRequest.getWind().getSpeed();
-
-        cityTextView.setText(city);
-        temperatureTextView.setText(temp+ "\u2103");
-        pressureTextView.setText(Integer.toString(pressure));
-        humidityTextView.setText(Integer.toString(humidity));
-        windTextView.setText(Integer.toString(wind));
-    }
-
 }
