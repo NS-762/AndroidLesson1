@@ -18,8 +18,12 @@ import android.widget.Toast;
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
 import com.example.androidlesson1.SingletonForImage;
+import com.example.androidlesson1.weatherModel.WeatherRequest;
 import com.example.androidlesson1.workingWithWeatherData.WorkingWithWeatherData;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 public class FragmentTop extends Fragment implements Constants, Subscriber {
 
@@ -30,8 +34,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
     private TextView windTextView;
     private TextView pressureTextView;
     private TextView humidityTextView;
-
-
+    WeatherRequest weatherRequest;
 
     private View view;
     private WorkingWithWeatherData workingWithWeatherData;
@@ -58,21 +61,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
             weatherPicture.setImageDrawable(drawable);
         }
         return view;
-    }
-
-    private void init() {
-        cityTextView = view.findViewById(R.id.city_0);
-        temperatureTextView = view.findViewById(R.id.temperature_0);
-        dateTextView = view.findViewById(R.id.date_0);
-        weatherPicture = view.findViewById(R.id.weather_picture_0);
-
-        windTextView = view.findViewById(R.id.wind_0);
-        pressureTextView = view.findViewById(R.id.pressure_0);
-        humidityTextView = view.findViewById(R.id.humidity_0);
-
-        workingWithWeatherData = new WorkingWithWeatherData(cityTextView, temperatureTextView,
-                windTextView, pressureTextView, humidityTextView);
-        workingWithWeatherData.getWeatherData();
     }
 
     @Override
@@ -111,4 +99,41 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
 //        Toast.makeText(getActivity(), "сохранялка", Toast.LENGTH_SHORT).show();
     }
 
+    private void init() {
+        cityTextView = view.findViewById(R.id.city_0);
+        temperatureTextView = view.findViewById(R.id.temperature_0);
+        dateTextView = view.findViewById(R.id.date_0);
+        weatherPicture = view.findViewById(R.id.weather_picture_0);
+
+        windTextView = view.findViewById(R.id.wind_0);
+        pressureTextView = view.findViewById(R.id.pressure_0);
+        humidityTextView = view.findViewById(R.id.humidity_0);
+
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
+        workingWithWeatherData = new WorkingWithWeatherData(cyclicBarrier);
+        workingWithWeatherData.getWeatherData(); //получение данных из интернета
+
+        try {
+            cyclicBarrier.await(); //тут барьер для потоков, потому что получалось, что данные из интернета не успевали загружаться
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        weatherRequest = workingWithWeatherData.getWeatherRequest(); //взять полученные данные из апи класса
+        displayWeather(weatherRequest); //установка полученных данных во фрагмент
+    }
+
+    public void displayWeather(WeatherRequest weatherRequest) {
+        String city = weatherRequest.getName();
+        int temp = (int)weatherRequest.getMain().getTemp() - 273;
+        int pressure = weatherRequest.getMain().getPressure();
+        int humidity = weatherRequest.getMain().getHumidity();
+        int wind = weatherRequest.getWind().getSpeed();
+
+        cityTextView.setText(city);
+        temperatureTextView.setText(temp + "\u00B0");
+        pressureTextView.setText(Integer.toString(pressure));
+        humidityTextView.setText(Integer.toString(humidity));
+        windTextView.setText(Integer.toString(wind));
+    }
 }
