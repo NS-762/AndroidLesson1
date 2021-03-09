@@ -13,16 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
 import com.example.androidlesson1.SingletonForImage;
 import com.example.androidlesson1.weatherModel.WeatherRequest;
-import com.example.androidlesson1.workingWithWeatherData.WorkingWithWeatherData;
+import com.example.androidlesson1.weatherModel.WorkingWithWeatherData;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 public class FragmentTop extends Fragment implements Constants, Subscriber {
