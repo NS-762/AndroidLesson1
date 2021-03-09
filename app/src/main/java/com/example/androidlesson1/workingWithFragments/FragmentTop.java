@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,8 @@ import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
 import com.example.androidlesson1.SingletonForImage;
 import com.example.androidlesson1.weatherModel.WeatherRequest;
-import com.example.androidlesson1.weatherModel.WorkingWithWeatherData;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.androidlesson1.workingWithWeatherData.WeatherData;
+
 
 import java.util.concurrent.CyclicBarrier;
 
@@ -35,7 +34,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
     WeatherRequest weatherRequest;
 
     private View view;
-    private WorkingWithWeatherData workingWithWeatherData;
+    private WeatherData weatherData;
 
     public static FragmentTop create() { //фабричный метод
         FragmentTop fragmentTop = new FragmentTop();
@@ -108,8 +107,8 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
         humidityTextView = view.findViewById(R.id.humidity_0);
 
         CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
-        workingWithWeatherData = new WorkingWithWeatherData(cyclicBarrier);
-        workingWithWeatherData.getWeatherData(); //получение данных из интернета
+        weatherData = new WeatherData(cyclicBarrier);
+        weatherData.getWeatherData(); //получение данных из интернета
 
         try {
             cyclicBarrier.await(); //тут барьер для потоков, потому что получалось, что данные из интернета не успевали загружаться
@@ -117,7 +116,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
             e.printStackTrace();
         }
 
-        weatherRequest = workingWithWeatherData.getWeatherRequest(); //взять полученные данные из апи класса
+        weatherRequest = weatherData.getWeatherRequest(); //взять полученные данные из апи класса
         displayWeather(weatherRequest); //установка полученных данных во фрагмент
     }
 

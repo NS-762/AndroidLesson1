@@ -1,7 +1,6 @@
 package com.example.androidlesson1.workingWithWeatherData;
 
 import android.os.Build;
-import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -19,17 +18,16 @@ import java.util.stream.Collectors;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class WorkingWithWeatherData {
-
+public class WeatherData {
     private static final String TAG = "WEATHER";
     private static final String WEATHER_URL =
             "https://api.openweathermap.org/data/2.5/weather?lat=55.75&lon=37.62&appid=";
-//    private static final String WEATHER_API_KEY = "4219fe39ece20b9a2e46b76729303c56";
+    //    private static final String WEATHER_API_KEY = "4219fe39ece20b9a2e46b76729303c56";
     private WeatherRequest weatherRequest;
     private CyclicBarrier cyclicBarrier;
 
 
-    public WorkingWithWeatherData(CyclicBarrier cyclicBarrier) {
+    public WeatherData(CyclicBarrier cyclicBarrier) {
         this.cyclicBarrier = cyclicBarrier;
     }
 
