@@ -5,7 +5,7 @@
     android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Activity.MainActivity" >
+    tools:context=".activity.MainActivity" >
 
     <ScrollView
         android:id="@+id/scrollView2"
