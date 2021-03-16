@@ -18,11 +18,12 @@ import com.example.androidlesson1.R;
 import com.example.androidlesson1.SingletonForImage;
 import com.example.androidlesson1.weatherModel.WeatherRequest;
 import com.example.androidlesson1.workingWithWeatherData.WeatherData;
+import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternet;
 
 
 import java.util.concurrent.CyclicBarrier;
 
-public class FragmentTop extends Fragment implements Constants, Subscriber {
+public class FragmentTop extends Fragment implements Constants, Subscriber, WeatherFromInternet {
 
     private ImageView weatherPicture;
     private TextView cityTextView;
@@ -52,10 +53,10 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
 
         if (savedInstanceState != null) {
             cityTextView.setText(savedInstanceState.getString(CITY));
-            temperatureTextView.setText(savedInstanceState.getString(TEMPERATURE));
+/*            temperatureTextView.setText(savedInstanceState.getString(TEMPERATURE));
             dateTextView.setText(savedInstanceState.getString(DATE));
             Drawable drawable = SingletonForImage.getInstance().getWeatherPicture().getDrawable(); //картинка из синлтона
-            weatherPicture.setImageDrawable(drawable);
+            weatherPicture.setImageDrawable(drawable);*/
         }
         return view;
     }
@@ -87,40 +88,17 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(CITY, cityTextView.getText().toString());
-        outState.putString(TEMPERATURE, temperatureTextView.getText().toString());
+/*        outState.putString(TEMPERATURE, temperatureTextView.getText().toString());
         outState.putString(DATE, dateTextView.getText().toString());
-        SingletonForImage.getInstance().setWeatherPicture(weatherPicture); //сохранить картинку в синглтоне
+        SingletonForImage.getInstance().setWeatherPicture(weatherPicture);*/ //сохранить картинку в синглтоне
 
 //        Snackbar.make(view, "Сохранялка",
 //                Snackbar.LENGTH_SHORT).show();
 //        Toast.makeText(getActivity(), "сохранялка", Toast.LENGTH_SHORT).show();
     }
 
-    private void init() {
-        cityTextView = view.findViewById(R.id.city_0);
-        temperatureTextView = view.findViewById(R.id.temperature_0);
-        dateTextView = view.findViewById(R.id.date_0);
-        weatherPicture = view.findViewById(R.id.weather_picture_0);
-
-        windTextView = view.findViewById(R.id.wind_0);
-        pressureTextView = view.findViewById(R.id.pressure_0);
-        humidityTextView = view.findViewById(R.id.humidity_0);
-
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
-        weatherData = new WeatherData(cyclicBarrier);
-        weatherData.getWeatherData(); //получение данных из интернета
-
-        try {
-            cyclicBarrier.await(); //тут барьер для потоков, потому что получалось, что данные из интернета не успевали загружаться
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        weatherRequest = weatherData.getWeatherRequest(); //взять полученные данные из апи класса
-        displayWeather(weatherRequest); //установка полученных данных во фрагмент
-    }
-
-    public void displayWeather(WeatherRequest weatherRequest) {
+    @Override
+    public void setWeatherFromInternet(WeatherRequest weatherRequest) {
         String city = weatherRequest.getName();
         int temp = (int)weatherRequest.getMain().getTemp() - 273;
         int pressure = weatherRequest.getMain().getPressure();
@@ -132,5 +110,16 @@ public class FragmentTop extends Fragment implements Constants, Subscriber {
         pressureTextView.setText(Integer.toString(pressure));
         humidityTextView.setText(Integer.toString(humidity));
         windTextView.setText(Integer.toString(wind));
+    }
+
+    private void init() {
+        cityTextView = view.findViewById(R.id.city_0);
+        temperatureTextView = view.findViewById(R.id.temperature_0);
+        dateTextView = view.findViewById(R.id.date_0);
+        weatherPicture = view.findViewById(R.id.weather_picture_0);
+
+        windTextView = view.findViewById(R.id.wind_0);
+        pressureTextView = view.findViewById(R.id.pressure_0);
+        humidityTextView = view.findViewById(R.id.humidity_0);
     }
 }

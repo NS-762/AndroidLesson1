@@ -15,10 +15,13 @@ import android.view.MenuItem;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
+import com.example.androidlesson1.weatherModel.WeatherRequest;
 import com.example.androidlesson1.workingWithFragments.FragmentBottom;
 import com.example.androidlesson1.workingWithFragments.FragmentTop;
 import com.example.androidlesson1.workingWithFragments.Publisher;
 import com.example.androidlesson1.workingWithFragments.PublisherGetter;
+import com.example.androidlesson1.workingWithWeatherData.WeatherData;
+import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternet;
 
 
 public class MainActivity extends BaseActivity implements Constants, PublisherGetter {
@@ -54,6 +57,8 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
             fragmentTransaction.commit();
         }
         publisher.addSubscriber(fragmentTop);
+        WeatherData weatherData = new WeatherData(fragmentTop);
+        weatherData.getWeatherData();
 
         orientationDetermination(); //определение ориентации экрана
         setBackgroundImage(orientation); //установка фона экрана
@@ -66,22 +71,8 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { //сюда приходит результат из настроек
 
-        if (requestCode == REQUEST_SETTINGS_ACTIVITY && resultCode == RESULT_OK) { //проверка, что окно отработало нормально
 
-            String newCity = data.getStringExtra(CITY);
-            if (newCity.replaceAll("\\s+", "").equals("")) { //если в настройках не был выбран город или введна пустота
-                newCity = getString(R.string.city_1); //по умолчанию ставится Москва
-            }
-            fragmentTop.updateSettings(newCity);
-            recreate();
-        }
-
-        super.onActivityResult(requestCode, resultCode, data);
-        return;
-    }
     public void orientationDetermination() {
         Configuration configuration = getResources().getConfiguration();
         if(configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -117,16 +108,24 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
         setBackgroundImage(newConfig.orientation);
     }
 
-    private void setBackgroundImage(final int orientation) { //установка фона активити
-        ConstraintLayout constraintLayout;
-        constraintLayout = findViewById(R.id.constraint_layout);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { //сюда приходит результат из настроек
 
-        if  (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            constraintLayout.setBackgroundResource(R.drawable.fon_portrait);
-        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            constraintLayout.setBackgroundResource(R.drawable.fon_landscape);
+        if (requestCode == REQUEST_SETTINGS_ACTIVITY && resultCode == RESULT_OK) { //проверка, что окно отработало нормально
+
+            String newCity = data.getStringExtra(CITY);
+            if (newCity.replaceAll("\\s+", "").equals("")) { //если в настройках не был выбран город или введна пустота
+                newCity = getString(R.string.city_1); //по умолчанию ставится Москва
+            }
+            fragmentTop.updateSettings(newCity);
+            recreate();
         }
+
+        super.onActivityResult(requestCode, resultCode, data);
+        return;
     }
+
+
 
 
     @Override
@@ -164,6 +163,21 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
         super.onSaveInstanceState(outState);
         getSupportFragmentManager().putFragment(outState, "FragmentTop", fragmentTop);
         getSupportFragmentManager().putFragment(outState, "FragmentBottom", fragmentBottom);
+    }
+
+    private void setBackgroundImage(final int orientation) { //установка фона активити
+        ConstraintLayout constraintLayout;
+        constraintLayout = findViewById(R.id.constraint_layout);
+
+        if  (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            constraintLayout.setBackgroundResource(R.drawable.fon_portrait);
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            constraintLayout.setBackgroundResource(R.drawable.fon_landscape);
+        }
+    }
+
+    private void init() {
+
     }
 }
 

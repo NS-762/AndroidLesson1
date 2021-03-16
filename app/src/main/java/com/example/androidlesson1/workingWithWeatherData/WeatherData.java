@@ -1,6 +1,7 @@
 package com.example.androidlesson1.workingWithWeatherData;
 
 import android.os.Build;
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -24,22 +25,17 @@ public class WeatherData {
             "https://api.openweathermap.org/data/2.5/weather?lat=55.75&lon=37.62&appid=";
     //    private static final String WEATHER_API_KEY = "4219fe39ece20b9a2e46b76729303c56";
     private WeatherRequest weatherRequest;
-    private CyclicBarrier cyclicBarrier;
+    private WeatherFromInternet weatherFromInternet;
 
 
-    public WeatherData(CyclicBarrier cyclicBarrier) {
-        this.cyclicBarrier = cyclicBarrier;
-    }
-
-
-    public WeatherRequest getWeatherRequest() {
-        return weatherRequest;
+    public WeatherData(WeatherFromInternet weatherFromInternet) {
+        this.weatherFromInternet = weatherFromInternet;
     }
 
     public void getWeatherData() {
         try {
             final URL uri = new URL(WEATHER_URL + BuildConfig.WEATHER_API_KEY);
-//            final Handler handler = new Handler();
+            final Handler handler = new Handler();
 
 
             new Thread(new Runnable() {
@@ -56,15 +52,13 @@ public class WeatherData {
                         String result = getLines(in);
                         Gson gson = new Gson();
                         weatherRequest = gson.fromJson(result, WeatherRequest.class);
-                        cyclicBarrier.await();
-/*
+
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                displayWeather(weatherRequest);
+                                weatherFromInternet.setWeatherFromInternet(weatherRequest);
                             }
                         });
-*/
 
                     } catch (Exception e) {
                         Log.e(TAG, "Fail connection", e);
