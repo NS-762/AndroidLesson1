@@ -7,7 +7,7 @@
     android:layout_height="200dp"
     android:background="@drawable/linearlayout_background"
     android:orientation="vertical"
-    android:alpha="0.9"
+
     tools:context=".workingWithFragments.FragmentTop">
 
     <TextView
@@ -42,10 +42,11 @@
 
             <TextView
                 android:id="@+id/temperature_0"
-                android:layout_width="107dp"
+                android:layout_width="74dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_vertical"
+                android:layout_marginEnd="45dp"
+                android:gravity="center_vertical|end"
                 android:text="@string/temperature_0"
                 android:textColor="@color/text_color"
                 android:textSize="30sp" />
@@ -55,8 +56,9 @@
                 android:layout_width="69dp"
                 android:layout_height="57dp"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginStart="40dp"
-                app:srcCompat="@drawable/night1" />
+                android:layout_marginStart="45dp"
+                android:alpha="0.8"
+                app:srcCompat="@drawable/daytime_rain" />
         </FrameLayout>
 
     </LinearLayout>

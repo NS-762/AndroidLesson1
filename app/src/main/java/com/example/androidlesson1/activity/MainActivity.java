@@ -1,6 +1,7 @@
 package com.example.androidlesson1.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -15,13 +16,10 @@ import android.view.MenuItem;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
-import com.example.androidlesson1.weatherModel.WeatherRequest;
 import com.example.androidlesson1.workingWithFragments.FragmentBottom;
 import com.example.androidlesson1.workingWithFragments.FragmentTop;
 import com.example.androidlesson1.workingWithFragments.Publisher;
 import com.example.androidlesson1.workingWithFragments.PublisherGetter;
-import com.example.androidlesson1.workingWithWeatherData.WeatherData;
-import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternet;
 
 
 public class MainActivity extends BaseActivity implements Constants, PublisherGetter {
@@ -30,9 +28,8 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
 
     private FragmentTop fragmentTop;
     private FragmentBottom fragmentBottom;
-    private  int  orientation;
-
-
+    private int orientation;
+    private SharedPreferences sharedPreferences;
     private Publisher publisher = new Publisher();
 
     @Override
@@ -57,8 +54,10 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
             fragmentTransaction.commit();
         }
         publisher.addSubscriber(fragmentTop);
-        WeatherData weatherData = new WeatherData(fragmentTop);
-        weatherData.getWeatherData();
+
+/*        weatherData weatherData = new weatherData(fragmentTop, fragmentTop.getCity());
+//        weatherData.getWeatherData();
+        fragmentTop.setWeatherData(weatherData);*/
 
         orientationDetermination(); //определение ориентации экрана
         setBackgroundImage(orientation); //установка фона экрана
@@ -70,12 +69,9 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
         return publisher;
     }
 
-
-
-
     public void orientationDetermination() {
         Configuration configuration = getResources().getConfiguration();
-        if(configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+        if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             orientation = 1;
         }
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -126,8 +122,6 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
     }
 
 
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -150,6 +144,8 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
     protected void onDestroy() {
         super.onDestroy();
 //        Toast.makeText(getApplicationContext(), "onDestroy", Toast.LENGTH_SHORT).show();
+
+
     }
 
     @Override
@@ -169,7 +165,7 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
         ConstraintLayout constraintLayout;
         constraintLayout = findViewById(R.id.constraint_layout);
 
-        if  (orientation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             constraintLayout.setBackgroundResource(R.drawable.fon_portrait);
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             constraintLayout.setBackgroundResource(R.drawable.fon_landscape);
@@ -179,5 +175,7 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
     private void init() {
 
     }
+
+
 }
 

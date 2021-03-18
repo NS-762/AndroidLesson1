@@ -14,27 +14,29 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.CyclicBarrier;
 import java.util.stream.Collectors;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class WeatherData {
     private static final String TAG = "WEATHER";
-    private static final String WEATHER_URL =
-            "https://api.openweathermap.org/data/2.5/weather?lat=55.75&lon=37.62&appid=";
-    //    private static final String WEATHER_API_KEY = "4219fe39ece20b9a2e46b76729303c56";
+    private static String WEATHER_URL;
+    private String city = "Moscow";
     private WeatherRequest weatherRequest;
     private WeatherFromInternet weatherFromInternet;
 
 
-    public WeatherData(WeatherFromInternet weatherFromInternet) {
+    public WeatherData(WeatherFromInternet weatherFromInternet, String city) {
         this.weatherFromInternet = weatherFromInternet;
+        if (city != null)
+            this.city = city;
+//        WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.city + ",RU&appid=";
+        WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.city + "&units=metric&appid=";
     }
 
     public void getWeatherData() {
         try {
-            final URL uri = new URL(WEATHER_URL + BuildConfig.WEATHER_API_KEY);
+            final URL uri = new URL(WEATHER_URL +  BuildConfig.WEATHER_API_KEY);
             final Handler handler = new Handler();
 
 

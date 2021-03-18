@@ -23,7 +23,7 @@
     <string-array name="temperature">
         <item>1</item>
         <item>2</item>
-        <item>3</item>
+        <item>-13</item>
         <item>4</item>
         <item>5</item>
         <item>6</item>
@@ -32,12 +32,12 @@
 
     <array name="weather_picture">
         <item>@drawable/rain</item>
-        <item>@drawable/snowflake</item>
+        <item>@drawable/cloudy</item>
         <item>@drawable/sun</item>
-        <item>@drawable/night</item>
-        <item>@drawable/snowing</item>
-        <item>@drawable/rain2</item>
-        <item>@drawable/storm</item>
+        <item>@drawable/snowy</item>
+        <item>@drawable/lightning</item>
+        <item>@drawable/night_rain</item>
+        <item>@drawable/half_moon</item>
     </array>
 
 </resources>

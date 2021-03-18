@@ -1,11 +1,14 @@
 package com.example.androidlesson1.workingWithFragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +18,12 @@ import android.widget.TextView;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
-import com.example.androidlesson1.SingletonForImage;
 import com.example.androidlesson1.weatherModel.WeatherRequest;
 import com.example.androidlesson1.workingWithWeatherData.WeatherData;
 import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternet;
 
 
-import java.util.concurrent.CyclicBarrier;
+import java.time.LocalDateTime;
 
 public class FragmentTop extends Fragment implements Constants, Subscriber, WeatherFromInternet {
 
@@ -32,10 +34,8 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     private TextView windTextView;
     private TextView pressureTextView;
     private TextView humidityTextView;
-    WeatherRequest weatherRequest;
-
     private View view;
-    private WeatherData weatherData;
+    private SharedPreferences sharedPreferences;
 
     public static FragmentTop create() { //фабричный метод
         FragmentTop fragmentTop = new FragmentTop();
@@ -44,6 +44,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         return fragmentTop;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,11 +54,15 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
 
         if (savedInstanceState != null) {
             cityTextView.setText(savedInstanceState.getString(CITY));
-/*            temperatureTextView.setText(savedInstanceState.getString(TEMPERATURE));
-            dateTextView.setText(savedInstanceState.getString(DATE));
-            Drawable drawable = SingletonForImage.getInstance().getWeatherPicture().getDrawable(); //картинка из синлтона
-            weatherPicture.setImageDrawable(drawable);*/
         }
+
+        dateTextView.setText(LocalDateTime.now().toString());
+
+
+        WeatherData weatherData = new WeatherData(this,
+                cityTextView.getText().toString());
+        weatherData.getWeatherData();
+
         return view;
     }
 
@@ -69,12 +74,10 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public void updateData(String newDate, String newDayOfWeek, String newTemperature, Drawable newWeatherPicture) {
-
         dateTextView.setText(newDate + ", " + newDayOfWeek);
         temperatureTextView.setText(newTemperature);
         weatherPicture.setImageDrawable(newWeatherPicture);
@@ -88,9 +91,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(CITY, cityTextView.getText().toString());
-/*        outState.putString(TEMPERATURE, temperatureTextView.getText().toString());
-        outState.putString(DATE, dateTextView.getText().toString());
-        SingletonForImage.getInstance().setWeatherPicture(weatherPicture);*/ //сохранить картинку в синглтоне
 
 //        Snackbar.make(view, "Сохранялка",
 //                Snackbar.LENGTH_SHORT).show();
@@ -99,13 +99,11 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
 
     @Override
     public void setWeatherFromInternet(WeatherRequest weatherRequest) {
-        String city = weatherRequest.getName();
-        int temp = (int)weatherRequest.getMain().getTemp() - 273;
+        int temp = (int)weatherRequest.getMain().getTemp();
         int pressure = weatherRequest.getMain().getPressure();
         int humidity = weatherRequest.getMain().getHumidity();
         int wind = weatherRequest.getWind().getSpeed();
 
-        cityTextView.setText(city);
         temperatureTextView.setText(temp + "\u00B0");
         pressureTextView.setText(Integer.toString(pressure));
         humidityTextView.setText(Integer.toString(humidity));
@@ -121,5 +119,11 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         windTextView = view.findViewById(R.id.wind_0);
         pressureTextView = view.findViewById(R.id.pressure_0);
         humidityTextView = view.findViewById(R.id.humidity_0);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
     }
 }
