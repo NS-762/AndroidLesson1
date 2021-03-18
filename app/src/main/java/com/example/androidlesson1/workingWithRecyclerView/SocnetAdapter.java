@@ -36,7 +36,7 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull SocnetAdapter.ViewHolder holder, int position) {
         Soc soc = socSource.getSoc(position);
-        holder.setData(soc.getDate(), soc.getDayOfWeek(), soc.getTemperature(), soc.getWeatherPicture());
+        holder.setData(soc.getDate(), soc.getDayOfWeek(), soc.getTemperature() + "\u00B0", soc.getWeatherPicture());
     }
 
     @Override

@@ -56,37 +56,37 @@
                 android:layout_width="69dp"
                 android:layout_height="57dp"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginStart="45dp"
+                android:layout_marginStart="35dp"
                 android:alpha="0.8"
                 app:srcCompat="@drawable/daytime_rain" />
         </FrameLayout>
 
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
         android:layout_marginBottom="5dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="85dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/image_wind"
-            android:layout_width="36dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="3dp"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="94dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/wind" />
+            app:srcCompat="@drawable/autumn" />
 
         <TextView
             android:id="@+id/wind_0"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="58dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="@string/wind"
@@ -95,36 +95,44 @@
 
         <ImageView
             android:id="@+id/image_pressure"
-            android:layout_width="35dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="3dp"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="18dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/gauge" />
+            android:gravity="center_vertical"
+            app:srcCompat="@drawable/barometer" />
 
         <TextView
             android:id="@+id/pressure_0"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginStart="18dp"
             android:gravity="center_vertical"
-            android:text="@string/pressure"
+            android:text="1000"
             android:textColor="@color/text_color"
             android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/image_humidity"
-            android:layout_width="21dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            android:layout_marginStart="58dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/drop" />
 
         <TextView
             android:id="@+id/humidity_0"
-            android:layout_width="105dp"
+            android:layout_width="30dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="94dp"
             android:gravity="center_vertical"
             android:text="@string/humdity"
             android:textColor="@color/text_color"
             android:textSize="12sp" />
-    </LinearLayout>
+    </FrameLayout>
 </LinearLayout>

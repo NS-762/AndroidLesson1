@@ -105,9 +105,9 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         int wind = weatherRequest.getWind().getSpeed();
 
         temperatureTextView.setText(temp + "\u00B0");
+        windTextView.setText(Integer.toString(wind) + ",00");
         pressureTextView.setText(Integer.toString(pressure));
-        humidityTextView.setText(Integer.toString(humidity));
-        windTextView.setText(Integer.toString(wind));
+        humidityTextView.setText(Integer.toString(humidity) + ",0");
     }
 
     private void init() {
