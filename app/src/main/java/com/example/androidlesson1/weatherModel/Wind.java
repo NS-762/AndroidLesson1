@@ -1,22 +1,13 @@
 package com.example.androidlesson1.weatherModel;
 
 public class Wind {
-    private int speed;
-    private int deg;
+    private float speed;
 
-    public int getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(float speed) {
         this.speed = speed;
-    }
-
-    public int getDeg() {
-        return deg;
-    }
-
-    public void setDeg(int deg) {
-        this.deg = deg;
     }
 }

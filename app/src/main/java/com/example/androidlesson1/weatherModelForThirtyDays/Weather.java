@@ -1,15 +1,15 @@
-package com.example.androidlesson1.weatherModel;
+package com.example.androidlesson1.weatherModelForThirtyDays;
 
 public class Weather {
-    private String main;
+    private String id;
     private String description;
 
-    public String getMain() {
-        return main;
+    public String getId() {
+        return id;
     }
 
-    public void setMain(String main) {
-        this.main = main;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDescription() {

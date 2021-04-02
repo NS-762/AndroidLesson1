@@ -1,28 +1,9 @@
 package com.example.androidlesson1.weatherModel;
 
 public class WeatherRequest {
-    private Coord coord;
-    private Weather[] weather;
     private Main main;
     private Wind wind;
-    private Clouds clouds;
     private String name;
-
-    public Coord getCoord() {
-        return coord;
-    }
-
-    public void setCoord(Coord coord) {
-        this.coord = coord;
-    }
-
-    public Weather[] getWeather() {
-        return weather;
-    }
-
-    public void setWeather(Weather[] weather) {
-        this.weather = weather;
-    }
 
     public Main getMain() {
         return main;
@@ -38,14 +19,6 @@ public class WeatherRequest {
 
     public void setWind(Wind wind) {
         this.wind = wind;
-    }
-
-    public Clouds getClouds() {
-        return clouds;
-    }
-
-    public void setClouds(Clouds clouds) {
-        this.clouds = clouds;
     }
 
     public String getName() {

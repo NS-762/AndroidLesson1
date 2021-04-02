@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
@@ -20,6 +21,8 @@ import com.example.androidlesson1.workingWithFragments.FragmentBottom;
 import com.example.androidlesson1.workingWithFragments.FragmentTop;
 import com.example.androidlesson1.workingWithFragments.Publisher;
 import com.example.androidlesson1.workingWithFragments.PublisherGetter;
+import com.example.androidlesson1.workingWithWeatherData.WeatherData;
+import com.example.androidlesson1.workingWithWeatherData.WeatherDataForThirtyDays;
 
 
 public class MainActivity extends BaseActivity implements Constants, PublisherGetter {
@@ -32,12 +35,13 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
     private SharedPreferences sharedPreferences;
     private Publisher publisher = new Publisher();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_SHORT).show();
 
         if (savedInstanceState != null) {
             fragmentTop = (FragmentTop) getSupportFragmentManager()
@@ -45,7 +49,8 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
             fragmentBottom = (FragmentBottom) getSupportFragmentManager()
                     .getFragment(savedInstanceState, "FragmentBottom");
         } else {
-            fragmentTop = FragmentTop.create();
+            fragmentTop = FragmentTop.create(); //фрагменты создаются заново, в них подкачиваются новые данные
+//            fragmentTop = new FragmentTop();
             fragmentBottom = FragmentBottom.create();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                     .beginTransaction();
@@ -54,11 +59,6 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
             fragmentTransaction.commit();
         }
         publisher.addSubscriber(fragmentTop);
-
-/*        weatherData weatherData = new weatherData(fragmentTop, fragmentTop.getCity());
-//        weatherData.getWeatherData();
-        fragmentTop.setWeatherData(weatherData);*/
-
         orientationDetermination(); //определение ориентации экрана
         setBackgroundImage(orientation); //установка фона экрана
     }
@@ -114,6 +114,7 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
                 newCity = getString(R.string.city_1); //по умолчанию ставится Москва
             }
             fragmentTop.updateSettings(newCity);
+            fragmentTop.setDataUpdateRequired(true); //выбран новый город, поэтому требуется обнолвение данных
             recreate();
         }
 
@@ -131,6 +132,7 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
     @Override
     public void onResume() {
         super.onResume();
+//        Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT).show();
 //        setBackgroundImage(orientation);
     }
 
@@ -159,6 +161,7 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
         super.onSaveInstanceState(outState);
         getSupportFragmentManager().putFragment(outState, "FragmentTop", fragmentTop);
         getSupportFragmentManager().putFragment(outState, "FragmentBottom", fragmentBottom);
+
     }
 
     private void setBackgroundImage(final int orientation) { //установка фона активити
