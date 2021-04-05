@@ -58,7 +58,7 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginStart="35dp"
                 android:alpha="0.8"
-                app:srcCompat="@drawable/daytime_rain" />
+                app:srcCompat="@drawable/rain_night" />
         </FrameLayout>
 
     </LinearLayout>
@@ -77,19 +77,19 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginEnd="94dp"
+            android:layout_marginEnd="99dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/autumn" />
 
         <TextView
             android:id="@+id/wind_0"
-            android:layout_width="30dp"
+            android:layout_width="35dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginEnd="58dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="@string/wind"
+            android:text="99.00"
             android:textColor="@color/text_color"
             android:textSize="12sp" />
 

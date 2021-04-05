@@ -113,8 +113,12 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
             if (newCity.replaceAll("\\s+", "").equals("")) { //если в настройках не был выбран город или введна пустота
                 newCity = getString(R.string.city_1); //по умолчанию ставится Москва
             }
-            fragmentTop.updateSettings(newCity);
+            fragmentTop.updateCity(newCity);
             fragmentTop.setDataUpdateRequired(true); //выбран новый город, поэтому требуется обнолвение данных
+
+            fragmentBottom.updateCity(newCity);
+            fragmentBottom.setDataUpdateRequired(true); //выбран новый город, поэтому требуется обнолвение данных
+
             recreate();
         }
 

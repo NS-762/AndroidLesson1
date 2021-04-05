@@ -2,8 +2,18 @@ package com.example.androidlesson1.weatherModel;
 
 public class Main {
     private float temp;
+    private float temp_max;
     private int pressure;
     private int humidity;
+
+
+    public float getTemp_max() {
+        return temp_max;
+    }
+
+    public void setTemp_max(float temp_max) {
+        this.temp_max = temp_max;
+    }
 
     public float getTemp() {
         return temp;

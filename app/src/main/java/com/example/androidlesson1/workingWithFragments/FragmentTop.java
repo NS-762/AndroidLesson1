@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
 
 public class FragmentTop extends Fragment implements Constants, Subscriber, WeatherFromInternet {
 
-    private ImageView weatherPicture;
+    private ImageView weatherPictureView;
     private TextView cityTextView;
     private TextView temperatureTextView;
     private TextView dateTextView;
@@ -41,9 +41,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     private SharedPreferences sharedPreferences;
     private boolean isDataUpdateRequired = true;
     private String cityText;
-    boolean haha1 = true;
-    boolean haha2 = true;
-    boolean haha3 = true;
 
 
     public void setDataUpdateRequired(boolean dataUpdateRequired) {
@@ -79,11 +76,12 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
             windTextView.setText(savedInstanceState.getString("wind"));
             pressureTextView.setText(savedInstanceState.getString("pressure"));
             humidityTextView.setText(savedInstanceState.getString("humidity"));
-            weatherPicture = SingletonForImage.getInstance().getWeatherPicture();
+            weatherPictureView = SingletonForImage.getInstance().getWeatherPicture();
         } else { //в противном случае загрузить данные из интернета
             WeatherData weatherData = new WeatherData(this,
                     cityText);
             weatherData.getWeatherData();
+            cityTextView.setText(cityText);
             isDataUpdateRequired = false; //это нужно, чтобы при смене ориентации не скачивались новые данные
         }
 
@@ -105,10 +103,10 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     public void updateData(String newDate, String newDayOfWeek, String newTemperature, Drawable newWeatherPicture) {
         dateTextView.setText(newDate + ", " + newDayOfWeek);
         temperatureTextView.setText(newTemperature);
-        weatherPicture.setImageDrawable(newWeatherPicture);
+        weatherPictureView.setImageDrawable(newWeatherPicture);
     }
 
-    public void updateSettings(String newCity) { //то, что меняется в настройках приложения
+    public void updateCity(String newCity) { //то, что меняется в настройках приложения
         cityTextView.setText(newCity);
     }
 
@@ -121,7 +119,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         outState.putString("pressure", pressureTextView.getText().toString());
         outState.putString("humidity", humidityTextView.getText().toString());
         outState.putBoolean("IsDataUpdateRequired", isDataUpdateRequired);
-        SingletonForImage.getInstance().setWeatherPicture(weatherPicture);
+        SingletonForImage.getInstance().setWeatherPicture(weatherPictureView);
 
 //        Snackbar.make(view, "Сохранялка",
 //                Snackbar.LENGTH_SHORT).show();
@@ -134,18 +132,47 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         int pressure = weatherRequest.getMain().getPressure();
         int humidity = weatherRequest.getMain().getHumidity();
         float wind = weatherRequest.getWind().getSpeed();
+        String mainDescription = weatherRequest.getWeather().get(0).getMain();
+
+
+
+        int weatherPicture;
+        switch (mainDescription) {
+            case ("Thunderstorm"):
+                weatherPicture = R.drawable.thunderstorm;
+                break;
+            case ("Drizzle"):
+                weatherPicture = R.drawable.rain;
+                break;
+            case ("Rain"):
+                weatherPicture = R.drawable.rain_day; //тут можно сделать ночной/дневной дождь
+                break;
+            case ("Snow"):
+                weatherPicture = R.drawable.snowy;
+                break;
+            case ("Clear"):
+                weatherPicture = R.drawable.clear_day; //тут можно луну или солнце
+                break;
+            case ("Clouds"):
+                weatherPicture = R.drawable.clouds_day;
+                break;
+            default:
+                weatherPicture = R.drawable.cyclone;
+        }
 
         temperatureTextView.setText(temp + "\u00B0");
-        windTextView.setText(Float.toString(wind) + ",00");
+        windTextView.setText(Float.toString(wind) + "0");
         pressureTextView.setText(Integer.toString(pressure));
         humidityTextView.setText(Integer.toString(humidity) + ",0");
+        weatherPictureView.setImageResource(weatherPicture);
+
     }
 
     private void init() {
         cityTextView = view.findViewById(R.id.city_0);
         temperatureTextView = view.findViewById(R.id.temperature_0);
         dateTextView = view.findViewById(R.id.date_0);
-        weatherPicture = view.findViewById(R.id.weather_picture_0);
+        weatherPictureView = view.findViewById(R.id.weather_picture_0);
 
         windTextView = view.findViewById(R.id.wind_0);
         pressureTextView = view.findViewById(R.id.pressure_0);

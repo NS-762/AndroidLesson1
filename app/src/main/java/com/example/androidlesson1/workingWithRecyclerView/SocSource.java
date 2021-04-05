@@ -1,9 +1,10 @@
 package com.example.androidlesson1.workingWithRecyclerView;
 
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 
 import com.example.androidlesson1.R;
+import com.example.androidlesson1.weatherModelForThirtyDays.FullWeatherForDay;
+import com.example.androidlesson1.weatherModelForThirtyDays.WeatherRequestForThirtyDays;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,41 +12,76 @@ import java.util.List;
 
 public class SocSource { //заполнения массива данными для элементов RV
 
+    private int AMOUNT_OF_DAYS = 5;
+
     private List<Soc> dataSource;
     private Resources resources;
 
-    public SocSource(Resources resources) {
-        dataSource = new ArrayList<>(7);
+    private WeatherRequestForThirtyDays weatherRequest;
+
+    public SocSource(WeatherRequestForThirtyDays weatherRequest, Resources resources) {
+        dataSource = new ArrayList<>(AMOUNT_OF_DAYS);
+        this.weatherRequest = weatherRequest;
         this.resources = resources;
     }
 
     public SocSource build() {
-        String[] dates = resources.getStringArray(R.array.date);
+        String[] dates = resources.getStringArray(R.array.date); //это поменять
         String[] dayOfWeeks = resources.getStringArray(R.array.day_of_week);
-        String[] temperatures = resources.getStringArray(R.array.temperature);
-        int[] weatherPictures = getImageArray();
+        List<FullWeatherForDay> listFullWeatherForDays = weatherRequest.getList(); //из подкачанных данных взять лист с погодой на несколько дней
 
-        for (int i = 0; i < dates.length; i++) {
-            dataSource.add(new Soc(dates[i], dayOfWeeks[i], temperatures[i], weatherPictures[i]));
+        for (int i = 0; i < AMOUNT_OF_DAYS; i++) {
+
+            FullWeatherForDay weatherForDay = listFullWeatherForDays.get(i); //из листа погод взять конкретный день
+            String temperature = Integer.toString((int) weatherForDay.getMain().getTemp_max()); //взять его температуру и тд
+            String wind = Float.toString(weatherForDay.getWind().getSpeed());
+            String pressure = Float.toString(weatherForDay.getMain().getPressure());
+            String humidity = Float.toString(weatherForDay.getMain().getHumidity());
+            String mainDescription = weatherForDay.getWeather().get(0).getMain();
+
+/*            String mainDescription = weatherForDay.getWeather().get(0).getMain();
+            String mainDescription = weatherForDay.getWeather().get(0).getMain();
+            String mainDescription = weatherForDay.getWeather().get(0).getMain();
+            String mainDescription = weatherForDay.getWeather().get(0).getMain();*/
+
+            int weatherPicture;
+
+            switch (mainDescription) {
+                case ("Thunderstorm"):
+                    weatherPicture = R.drawable.thunderstorm;
+                    break;
+                case ("Drizzle"):
+                    weatherPicture = R.drawable.rain;
+                    break;
+                case ("Rain"):
+                    weatherPicture = R.drawable.rain_day; //тут можно сделать ночной/дневной дождь
+                    break;
+                case ("Snow"):
+                    weatherPicture = R.drawable.snowy;
+                    break;
+                case ("Clear"):
+                    weatherPicture = R.drawable.clear_day; //тут можно луну или солнце
+                    break;
+                case ("Clouds"):
+                    weatherPicture = R.drawable.clouds_day; //тут можно сделать ночные/дневные облака
+                    break;
+                default:
+                    weatherPicture = R.drawable.cyclone;
+            }
+
+
+            dataSource.add(new Soc(dates[i], dayOfWeeks[i], temperature,
+                    weatherPicture, wind, pressure, humidity));
         }
         return this;
     }
 
-    public Soc getSoc (int position) {
+
+    public Soc getSoc(int position) {
         return dataSource.get(position);
     }
 
     public int size() {
         return dataSource.size();
-    }
-
-    private int[] getImageArray() {
-        TypedArray pictures = resources.obtainTypedArray(R.array.weather_picture);
-        int length = pictures.length();
-        int[] weatherPictures = new int[length];
-        for (int i = 0; i < length; i++) {
-            weatherPictures[i] = pictures.getResourceId(i,0);
-        }
-        return weatherPictures;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.androidlesson1.workingWithRecyclerView;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,8 +78,8 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
             getDate().setText(date);
             getDayOfWeek().setText(dayOfWeek);
             getTemperature().setText(temperature);
+/*            getWeatherPicture().setImageDrawable(weatherPicture);*/
             getWeatherPicture().setImageResource(weatherPicture);
-
         }
 
         public TextView getDate() {
