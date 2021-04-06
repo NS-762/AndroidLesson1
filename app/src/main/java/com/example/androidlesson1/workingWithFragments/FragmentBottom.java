@@ -87,8 +87,11 @@ public class FragmentBottom extends Fragment implements ItemClickListener, Weath
     }
 
     @Override
-    public void notifySubscribers(String newDate, String newDayOfWeek, String newTemperature, Drawable newWeatherPicture) {
-        publisher.notifySubscribers(newDate, newDayOfWeek, newTemperature, newWeatherPicture);
+    public void notifySubscribers(String newDayOfWeek, String newTemperature,
+                                  Drawable newWeatherPicture, String newWind, String newPressure,
+                                  String newHumidity, String newDescription) {
+        publisher.notifySubscribers(newDayOfWeek, newTemperature, newWeatherPicture, newWind,
+                newPressure, newHumidity, newDescription);
     }
 
     @Override

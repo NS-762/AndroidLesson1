@@ -26,7 +26,6 @@ public class SocSource { //заполнения массива данными д
     }
 
     public SocSource build() {
-        String[] dates = resources.getStringArray(R.array.date); //это поменять
         String[] dayOfWeeks = resources.getStringArray(R.array.day_of_week);
         List<FullWeatherForDay> listFullWeatherForDays = weatherRequest.getList(); //из подкачанных данных взять лист с погодой на несколько дней
 
@@ -51,13 +50,13 @@ public class SocSource { //заполнения массива данными д
                     weatherPicture = R.drawable.thunderstorm;
                     break;
                 case ("Drizzle"):
-                    weatherPicture = R.drawable.rain;
+                    weatherPicture = R.drawable.drizzle;
                     break;
                 case ("Rain"):
-                    weatherPicture = R.drawable.rain_day; //тут можно сделать ночной/дневной дождь
+                    weatherPicture = R.drawable.rain; //тут можно сделать ночной/дневной дождь
                     break;
                 case ("Snow"):
-                    weatherPicture = R.drawable.snowy;
+                    weatherPicture = R.drawable.snow;
                     break;
                 case ("Clear"):
                     weatherPicture = R.drawable.clear_day; //тут можно луну или солнце
@@ -70,8 +69,8 @@ public class SocSource { //заполнения массива данными д
             }
 
 
-            dataSource.add(new Soc(dates[i], dayOfWeeks[i], temperature,
-                    weatherPicture, wind, pressure, humidity));
+            dataSource.add(new Soc(dayOfWeeks[i], temperature,
+                    weatherPicture, wind, pressure, humidity, mainDescription));
         }
         return this;
     }

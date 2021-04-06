@@ -37,7 +37,9 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull SocnetAdapter.ViewHolder holder, int position) {
         Soc soc = socSource.getSoc(position);
-        holder.setData(soc.getDate(), soc.getDayOfWeek(), soc.getTemperature() + "\u00B0", soc.getWeatherPicture());
+        holder.setData(soc.getDayOfWeek(), soc.getTemperature() + "\u00B0",
+                soc.getWeatherPicture(), soc.getWind(), soc.getPressure(), soc.getHumidity(),
+                soc.getDescription());
     }
 
     @Override
@@ -47,55 +49,80 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView date;
-        private TextView dayOfWeek;
-        private TextView temperature;
-        private ImageView weatherPicture;
+        private TextView dayOfWeekView;
+        private TextView temperatureView;
+        private ImageView weatherPictureView;
+        private TextView windView;
+        private TextView pressureView;
+        private TextView humidityView;
+        private TextView descriptionView;
         private LinearLayout linearLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            date = itemView.findViewById(R.id.date_in_item);
-            dayOfWeek = itemView.findViewById(R.id.day_of_week_in_item);
-            temperature = itemView.findViewById(R.id.temperature_in_item);
-            weatherPicture = itemView.findViewById(R.id.weather_picture_in_item);
+            dayOfWeekView = itemView.findViewById(R.id.day_of_week_in_item);
+            temperatureView = itemView.findViewById(R.id.temperature_in_item);
+            weatherPictureView = itemView.findViewById(R.id.weather_picture_in_item);
+            windView = itemView.findViewById(R.id.wind_in_item);
+            pressureView = itemView.findViewById(R.id.pressure_in_item);
+            humidityView = itemView.findViewById(R.id.humidity_in_item);
+            descriptionView = itemView.findViewById(R.id.description_in_item);
             linearLayout = itemView.findViewById(R.id.linear_layout_in_item);
 
             linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemClickListener.notifySubscribers(date.getText().toString(),
-                            dayOfWeek.getText().toString(),
-                            temperature.getText().toString(),
-                            weatherPicture.getDrawable());
-                    
+                    itemClickListener.notifySubscribers(dayOfWeekView.getText().toString(),
+                            temperatureView.getText().toString(),
+                            weatherPictureView.getDrawable(),
+                            windView.getText().toString(),
+                            pressureView.getText().toString(),
+                            humidityView.getText().toString(),
+                            descriptionView.getText().toString());
+
                 }
             });
 
         }
 
-        public void setData(String date, String dayOfWeek, String temperature, int weatherPicture) {
-            getDate().setText(date);
-            getDayOfWeek().setText(dayOfWeek);
-            getTemperature().setText(temperature);
-/*            getWeatherPicture().setImageDrawable(weatherPicture);*/
-            getWeatherPicture().setImageResource(weatherPicture);
+        public void setData(String dayOfWeek, String temperature, int weatherPicture, String wind,
+                            String pressure, String humidity, String description) {
+            getDayOfWeekView().setText(dayOfWeek);
+            getTemperatureView().setText(temperature);
+            getWeatherPictureView().setImageResource(weatherPicture);
+            getWindView().setText(wind);
+            getPressureView().setText(pressure);
+            getHumidityView().setText(humidity);
+            getDescriptionView().setText(description);
         }
 
-        public TextView getDate() {
-            return date;
+
+        public TextView getDayOfWeekView() {
+            return dayOfWeekView;
         }
 
-        public TextView getDayOfWeek() {
-            return dayOfWeek;
+        public TextView getTemperatureView() {
+            return temperatureView;
         }
 
-        public TextView getTemperature() {
-            return temperature;
+        public ImageView getWeatherPictureView() {
+            return weatherPictureView;
         }
 
-        public ImageView getWeatherPicture() {
-            return weatherPicture;
+        public TextView getWindView() {
+            return windView;
+        }
+
+        public TextView getPressureView() {
+            return pressureView;
+        }
+
+        public TextView getHumidityView() {
+            return humidityView;
+        }
+
+        public TextView getDescriptionView() {
+            return descriptionView;
         }
     }
 

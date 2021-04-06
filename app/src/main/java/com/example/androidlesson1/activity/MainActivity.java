@@ -173,7 +173,8 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
         constraintLayout = findViewById(R.id.constraint_layout);
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            constraintLayout.setBackgroundResource(R.drawable.fon_portrait);
+//            constraintLayout.setBackgroundResource(R.drawable.fon_portrait);
+            constraintLayout.setBackgroundResource(R.drawable.test_fon3);
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             constraintLayout.setBackgroundResource(R.drawable.fon_landscape);
         }

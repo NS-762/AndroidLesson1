@@ -33,7 +33,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     private ImageView weatherPictureView;
     private TextView cityTextView;
     private TextView temperatureTextView;
-    private TextView dateTextView;
+    private TextView descriptionTextView;
     private TextView windTextView;
     private TextView pressureTextView;
     private TextView humidityTextView;
@@ -73,6 +73,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         if (savedInstanceState != null && !isDataUpdateRequired) { //если есть сохраненные данные и нет необходимости их обновлять
             cityTextView.setText(savedInstanceState.getString(CITY));
             temperatureTextView.setText(savedInstanceState.getString("temperature"));
+            descriptionTextView.setText(savedInstanceState.getString("description"));
             windTextView.setText(savedInstanceState.getString("wind"));
             pressureTextView.setText(savedInstanceState.getString("pressure"));
             humidityTextView.setText(savedInstanceState.getString("humidity"));
@@ -85,7 +86,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
             isDataUpdateRequired = false; //это нужно, чтобы при смене ориентации не скачивались новые данные
         }
 
-        dateTextView.setText(LocalDateTime.now().toString());
         return view;
     }
 
@@ -100,10 +100,16 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     }
 
     @Override
-    public void updateData(String newDate, String newDayOfWeek, String newTemperature, Drawable newWeatherPicture) {
-        dateTextView.setText(newDate + ", " + newDayOfWeek);
+    public void updateData(String newDayOfWeek, String newTemperature, Drawable newWeatherPicture,  String newWind,
+                           String newPressure, String newHumidity, String newDescription) {
+/*        dateTextView.setText(newDate + ", " + newDayOfWeek);*/
         temperatureTextView.setText(newTemperature);
         weatherPictureView.setImageDrawable(newWeatherPicture);
+        windTextView.setText(newWind);
+        pressureTextView.setText(newPressure);
+        humidityTextView.setText(newHumidity);
+        descriptionTextView.setText(newDescription.toUpperCase());
+
     }
 
     public void updateCity(String newCity) { //то, что меняется в настройках приложения
@@ -115,6 +121,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         super.onSaveInstanceState(outState);
         outState.putString(CITY, cityTextView.getText().toString());
         outState.putString("temperature", temperatureTextView.getText().toString());
+        outState.putString("description", descriptionTextView.getText().toString());
         outState.putString("wind", windTextView.getText().toString());
         outState.putString("pressure", pressureTextView.getText().toString());
         outState.putString("humidity", humidityTextView.getText().toString());
@@ -140,23 +147,30 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         switch (mainDescription) {
             case ("Thunderstorm"):
                 weatherPicture = R.drawable.thunderstorm;
+                descriptionTextView.setText("THUNDERSTORM");
                 break;
             case ("Drizzle"):
-                weatherPicture = R.drawable.rain;
+                weatherPicture = R.drawable.drizzle;
+                descriptionTextView.setText("DRIZZLE");
                 break;
             case ("Rain"):
-                weatherPicture = R.drawable.rain_day; //тут можно сделать ночной/дневной дождь
+                weatherPicture = R.drawable.rain; //тут можно сделать ночной/дневной дождь
+                descriptionTextView.setText("RAIN");
                 break;
             case ("Snow"):
-                weatherPicture = R.drawable.snowy;
+                weatherPicture = R.drawable.snow;
+                descriptionTextView.setText("SNOW");
                 break;
             case ("Clear"):
                 weatherPicture = R.drawable.clear_day; //тут можно луну или солнце
+                descriptionTextView.setText("CLEAR");
                 break;
             case ("Clouds"):
                 weatherPicture = R.drawable.clouds_day;
+                descriptionTextView.setText("CLOUDS");
                 break;
             default:
+                descriptionTextView.setText("СYCLONE");
                 weatherPicture = R.drawable.cyclone;
         }
 
@@ -171,13 +185,11 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     private void init() {
         cityTextView = view.findViewById(R.id.city_0);
         temperatureTextView = view.findViewById(R.id.temperature_0);
-        dateTextView = view.findViewById(R.id.date_0);
         weatherPictureView = view.findViewById(R.id.weather_picture_0);
-
         windTextView = view.findViewById(R.id.wind_0);
         pressureTextView = view.findViewById(R.id.pressure_0);
         humidityTextView = view.findViewById(R.id.humidity_0);
-
+        descriptionTextView = view.findViewById(R.id.description_0);
         cityText = cityTextView.getText().toString();
     }
 }
