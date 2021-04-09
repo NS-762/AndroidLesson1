@@ -26,12 +26,16 @@ import com.example.androidlesson1.workingWithWeatherData.WeatherData;
 import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternet;
 
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class FragmentTop extends Fragment implements Constants, Subscriber, WeatherFromInternet {
 
     private ImageView weatherPictureView;
     private TextView cityTextView;
+    private TextView dayTextView;
     private TextView temperatureTextView;
     private TextView descriptionTextView;
     private TextView windTextView;
@@ -63,7 +67,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         init();
 
 
-
         if (savedInstanceState != null) {
             isDataUpdateRequired = savedInstanceState.getBoolean("IsDataUpdateRequired");
             cityText = savedInstanceState.getString(CITY); //название говорода, для которого будут скачиваться данные
@@ -73,6 +76,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         if (savedInstanceState != null && !isDataUpdateRequired) { //если есть сохраненные данные и нет необходимости их обновлять
             cityTextView.setText(savedInstanceState.getString(CITY));
             temperatureTextView.setText(savedInstanceState.getString("temperature"));
+            dayTextView.setText(savedInstanceState.getString("day"));
             descriptionTextView.setText(savedInstanceState.getString("description"));
             windTextView.setText(savedInstanceState.getString("wind"));
             pressureTextView.setText(savedInstanceState.getString("pressure"));
@@ -85,6 +89,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
             cityTextView.setText(cityText);
             isDataUpdateRequired = false; //это нужно, чтобы при смене ориентации не скачивались новые данные
         }
+
 
         return view;
     }
@@ -100,9 +105,9 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     }
 
     @Override
-    public void updateData(String newDayOfWeek, String newTemperature, Drawable newWeatherPicture,  String newWind,
+    public void updateData(String newDay, String newTemperature, Drawable newWeatherPicture, String newWind,
                            String newPressure, String newHumidity, String newDescription) {
-/*        dateTextView.setText(newDate + ", " + newDayOfWeek);*/
+        dayTextView.setText(newDay);
         temperatureTextView.setText(newTemperature);
         weatherPictureView.setImageDrawable(newWeatherPicture);
         windTextView.setText(newWind);
@@ -121,6 +126,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         super.onSaveInstanceState(outState);
         outState.putString(CITY, cityTextView.getText().toString());
         outState.putString("temperature", temperatureTextView.getText().toString());
+        outState.putString("day", dayTextView.getText().toString());
         outState.putString("description", descriptionTextView.getText().toString());
         outState.putString("wind", windTextView.getText().toString());
         outState.putString("pressure", pressureTextView.getText().toString());
@@ -140,7 +146,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         int humidity = weatherRequest.getMain().getHumidity();
         float wind = weatherRequest.getWind().getSpeed();
         String mainDescription = weatherRequest.getWeather().get(0).getMain();
-
 
 
         int weatherPicture;
@@ -180,11 +185,21 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         humidityTextView.setText(Integer.toString(humidity) + ",0");
         weatherPictureView.setImageResource(weatherPicture);
 
+
+
+        long unixSeconds = weatherRequest.getDt(); // секунды
+        Date dateFormat = new java.util.Date(unixSeconds * 1000);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+        String dayText = sdf.format(dateFormat);
+
+        dayTextView.setText(dayText);
     }
 
     private void init() {
         cityTextView = view.findViewById(R.id.city_0);
         temperatureTextView = view.findViewById(R.id.temperature_0);
+        dayTextView = view.findViewById(R.id.date_0);
         weatherPictureView = view.findViewById(R.id.weather_picture_0);
         windTextView = view.findViewById(R.id.wind_0);
         pressureTextView = view.findViewById(R.id.pressure_0);

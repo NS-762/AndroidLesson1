@@ -1,7 +1,5 @@
 package com.example.androidlesson1;
 
-import android.widget.ImageView;
-
 import com.example.androidlesson1.weatherModelForThirtyDays.WeatherRequestForThirtyDays;
 
 public class SingletonForWeatherData {

@@ -32,7 +32,7 @@ public class WeatherDataForThirtyDays {
         if (city != null)
             this.city = city;
         WEATHER_URL = "https://api.openweathermap.org/data/2.5/forecast?q=" + this.city
-                + "&cnt=5&units=metric&appid=";
+                + "&cnt=40&units=metric&appid=";
     }
 
 //    https://api.openweathermap.org/data/2.5/forecast?q=Moscow&units=metric&cnt=4&appid=4219fe39ece20b9a2e46b76729303c56

@@ -1,6 +1,5 @@
 package com.example.androidlesson1.workingWithRecyclerView;
 
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidlesson1.R;
 import com.example.androidlesson1.workingWithFragments.ItemClickListener;
-import com.google.android.material.snackbar.Snackbar;
 
 public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder> {
 
@@ -49,7 +47,7 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView dayOfWeekView;
+        private TextView dayView;
         private TextView temperatureView;
         private ImageView weatherPictureView;
         private TextView windView;
@@ -60,7 +58,7 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            dayOfWeekView = itemView.findViewById(R.id.day_of_week_in_item);
+            dayView = itemView.findViewById(R.id.day_in_item);
             temperatureView = itemView.findViewById(R.id.temperature_in_item);
             weatherPictureView = itemView.findViewById(R.id.weather_picture_in_item);
             windView = itemView.findViewById(R.id.wind_in_item);
@@ -72,7 +70,7 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
             linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemClickListener.notifySubscribers(dayOfWeekView.getText().toString(),
+                    itemClickListener.notifySubscribers(dayView.getText().toString(),
                             temperatureView.getText().toString(),
                             weatherPictureView.getDrawable(),
                             windView.getText().toString(),
@@ -82,12 +80,11 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
 
                 }
             });
-
         }
 
-        public void setData(String dayOfWeek, String temperature, int weatherPicture, String wind,
+        public void setData(String day, String temperature, int weatherPicture, String wind,
                             String pressure, String humidity, String description) {
-            getDayOfWeekView().setText(dayOfWeek);
+            getDayView().setText(day);
             getTemperatureView().setText(temperature);
             getWeatherPictureView().setImageResource(weatherPicture);
             getWindView().setText(wind);
@@ -97,8 +94,8 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
         }
 
 
-        public TextView getDayOfWeekView() {
-            return dayOfWeekView;
+        public TextView getDayView() {
+            return dayView;
         }
 
         public TextView getTemperatureView() {

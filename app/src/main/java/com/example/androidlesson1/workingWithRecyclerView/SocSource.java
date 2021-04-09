@@ -6,14 +6,15 @@ import com.example.androidlesson1.R;
 import com.example.androidlesson1.weatherModelForThirtyDays.FullWeatherForDay;
 import com.example.androidlesson1.weatherModelForThirtyDays.WeatherRequestForThirtyDays;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class SocSource { //заполнения массива данными для элементов RV
 
-    private int AMOUNT_OF_DAYS = 5;
-
+    private int AMOUNT_OF_DAYS = 40;
     private List<Soc> dataSource;
     private Resources resources;
 
@@ -26,22 +27,18 @@ public class SocSource { //заполнения массива данными д
     }
 
     public SocSource build() {
-        String[] dayOfWeeks = resources.getStringArray(R.array.day_of_week);
         List<FullWeatherForDay> listFullWeatherForDays = weatherRequest.getList(); //из подкачанных данных взять лист с погодой на несколько дней
 
-        for (int i = 0; i < AMOUNT_OF_DAYS; i++) {
+        for (int i = 0; i < AMOUNT_OF_DAYS; i += 8) {
 
             FullWeatherForDay weatherForDay = listFullWeatherForDays.get(i); //из листа погод взять конкретный день
+
             String temperature = Integer.toString((int) weatherForDay.getMain().getTemp_max()); //взять его температуру и тд
             String wind = Float.toString(weatherForDay.getWind().getSpeed());
             String pressure = Float.toString(weatherForDay.getMain().getPressure());
             String humidity = Float.toString(weatherForDay.getMain().getHumidity());
             String mainDescription = weatherForDay.getWeather().get(0).getMain();
-
-/*            String mainDescription = weatherForDay.getWeather().get(0).getMain();
-            String mainDescription = weatherForDay.getWeather().get(0).getMain();
-            String mainDescription = weatherForDay.getWeather().get(0).getMain();
-            String mainDescription = weatherForDay.getWeather().get(0).getMain();*/
+            String date = getDateForThisDay(weatherForDay);
 
             int weatherPicture;
 
@@ -68,13 +65,19 @@ public class SocSource { //заполнения массива данными д
                     weatherPicture = R.drawable.cyclone;
             }
 
-
-            dataSource.add(new Soc(dayOfWeeks[i], temperature,
+            dataSource.add(new Soc(date, temperature,
                     weatherPicture, wind, pressure, humidity, mainDescription));
         }
         return this;
     }
 
+    public String getDateForThisDay(FullWeatherForDay weatherForDay) {
+        long unixSeconds = weatherForDay.getDt(); // секунды из api
+        Date dateFormat = new java.util.Date(unixSeconds * 1000);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+        String dayText = sdf.format(dateFormat);
+        return dayText;
+    }
 
     public Soc getSoc(int position) {
         return dataSource.get(position);

@@ -68,10 +68,6 @@ public class FragmentBottom extends Fragment implements ItemClickListener, Weath
             weatherDataForThirtyDays.getWeatherDataForThirtyDays();
             isDataUpdateRequired = false; //это нужно, чтобы при смене ориентации не скачивались новые данные
         }
-
-
-
-
         return view;
     }
 

@@ -21,7 +21,7 @@
 
 
         <TextView
-            android:id="@+id/day_of_week_in_item"
+            android:id="@+id/day_in_item"
             android:layout_width="@dimen/width"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
