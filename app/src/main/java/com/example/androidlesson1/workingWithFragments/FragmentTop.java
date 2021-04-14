@@ -72,7 +72,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
             cityText = savedInstanceState.getString(CITY); //название говорода, для которого будут скачиваться данные
         }
 
-
         if (savedInstanceState != null && !isDataUpdateRequired) { //если есть сохраненные данные и нет необходимости их обновлять
             cityTextView.setText(savedInstanceState.getString(CITY));
             temperatureTextView.setText(savedInstanceState.getString("temperature"));
@@ -89,8 +88,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
             cityTextView.setText(cityText);
             isDataUpdateRequired = false; //это нужно, чтобы при смене ориентации не скачивались новые данные
         }
-
-
         return view;
     }
 
@@ -114,7 +111,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         pressureTextView.setText(newPressure);
         humidityTextView.setText(newHumidity);
         descriptionTextView.setText(newDescription.toUpperCase());
-
     }
 
     public void updateCity(String newCity) { //то, что меняется в настройках приложения

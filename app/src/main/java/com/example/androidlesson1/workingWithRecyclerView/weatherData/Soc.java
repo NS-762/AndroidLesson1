@@ -1,6 +1,4 @@
-package com.example.androidlesson1.workingWithRecyclerView;
-
-import android.graphics.drawable.Drawable;
+package com.example.androidlesson1.workingWithRecyclerView.weatherData;
 
 public class Soc {
     private String dayOfWeek;

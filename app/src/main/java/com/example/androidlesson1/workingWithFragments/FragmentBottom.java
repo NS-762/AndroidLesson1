@@ -14,16 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidlesson1.R;
-import com.example.androidlesson1.SingletonForImage;
 import com.example.androidlesson1.SingletonForWeatherData;
 import com.example.androidlesson1.weatherModelForThirtyDays.WeatherRequestForThirtyDays;
-import com.example.androidlesson1.workingWithRecyclerView.SocSource;
-import com.example.androidlesson1.workingWithRecyclerView.SocnetAdapter;
-import com.example.androidlesson1.workingWithWeatherData.WeatherData;
+import com.example.androidlesson1.workingWithRecyclerView.weatherData.SocSource;
+import com.example.androidlesson1.workingWithRecyclerView.weatherData.SocnetAdapter;
 import com.example.androidlesson1.workingWithWeatherData.WeatherDataForThirtyDays;
 import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternetForThirtyDays;
-
-import java.time.LocalDateTime;
 
 public class FragmentBottom extends Fragment implements ItemClickListener, WeatherFromInternetForThirtyDays {
 
@@ -72,7 +68,7 @@ public class FragmentBottom extends Fragment implements ItemClickListener, Weath
     }
 
     public void initRecyclerView(View view, SocSource socSource) {
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view_history);
         recyclerView.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

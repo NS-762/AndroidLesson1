@@ -67,8 +67,8 @@ public class SettingsActivity extends BaseActivity implements Constants {
         selectCityEditText = findViewById(R.id.select_city);
         selectCityEditText.setOnFocusChangeListener(selectCityEditTextFocusChangeListener);
 
-        citiesViewed = new ArrayList<>();
-        citiesViewed.add("Moscow");
+/*        citiesViewed = new ArrayList<>();
+        citiesViewed.add("Moscow");*/
     }
 
     View.OnClickListener saveSettingsClickListener = new View.OnClickListener() {
@@ -80,9 +80,9 @@ public class SettingsActivity extends BaseActivity implements Constants {
             intentResult.putExtra(CITY, selectCity); //запись в интент названия города с пометкой cityNAME
             setResult(RESULT_OK, intentResult); //установка результата RESULT_OK и отправка интента
 
-            if (!citiesViewed.contains(selectCity)) { //если данного города нет в списке ранее просмотренных
+/*            if (!citiesViewed.contains(selectCity)) { //если данного города нет в списке ранее просмотренных
                 citiesViewed.add(selectCity); //то добавить его
-            }
+            }*/
             finish();
         }
     };

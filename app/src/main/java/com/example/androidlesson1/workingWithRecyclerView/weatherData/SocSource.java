@@ -1,4 +1,4 @@
-package com.example.androidlesson1.workingWithRecyclerView;
+package com.example.androidlesson1.workingWithRecyclerView.weatherData;
 
 import android.content.res.Resources;
 
@@ -14,14 +14,14 @@ import java.util.List;
 
 public class SocSource { //заполнения массива данными для элементов RV
 
-    private int AMOUNT_OF_DAYS = 40;
+    private int AMOUNT = 40;
     private List<Soc> dataSource;
     private Resources resources;
 
     private WeatherRequestForThirtyDays weatherRequest;
 
     public SocSource(WeatherRequestForThirtyDays weatherRequest, Resources resources) {
-        dataSource = new ArrayList<>(AMOUNT_OF_DAYS);
+        dataSource = new ArrayList<>(AMOUNT);
         this.weatherRequest = weatherRequest;
         this.resources = resources;
     }
@@ -29,7 +29,7 @@ public class SocSource { //заполнения массива данными д
     public SocSource build() {
         List<FullWeatherForDay> listFullWeatherForDays = weatherRequest.getList(); //из подкачанных данных взять лист с погодой на несколько дней
 
-        for (int i = 0; i < AMOUNT_OF_DAYS; i += 8) {
+        for (int i = 0; i < AMOUNT; i += 4) {
 
             FullWeatherForDay weatherForDay = listFullWeatherForDays.get(i); //из листа погод взять конкретный день
 

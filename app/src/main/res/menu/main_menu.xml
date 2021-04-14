@@ -4,5 +4,7 @@
 
     <item android:title="@string/settings"
         android:id="@+id/menu_settings"/>
+    <item android:title="History of cities"
+        android:id="@+id/menu_history_of_cities"/>
 
 </menu>
