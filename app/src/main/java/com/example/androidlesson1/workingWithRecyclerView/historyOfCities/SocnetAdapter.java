@@ -12,23 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder> {
 
-    private SocSource socSource;
     private List<String> historyOfCities;
+    private List<String> historyOfCitiesFull;
 
-//    public SocnetAdapter(SocSource socSource) {
-//        this.socSource = socSource;
-//    }
-
-    public SocnetAdapter(SocSource socSource, List<String> historyOfCities) {
-        this.socSource = socSource;
+    public SocnetAdapter(List<String> historyOfCities) {
         this.historyOfCities = historyOfCities;
+        historyOfCitiesFull = new ArrayList<>(historyOfCities);
     }
-
-
 
     @NonNull
     @Override
@@ -39,23 +34,15 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
         return viewHolder;
     }
 
-//    @Override
-//    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        Soc soc = socSource.getSoc(position);
-//        holder.setData(soc.getCity());
-//    }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Soc soc = socSource.getSoc(position);
-        holder.setData(soc.getCity());
+        holder.setData(historyOfCities.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return socSource.size();
+        return historyOfCities.size();
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener,
             Constants {
@@ -67,15 +54,14 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
             super(itemView);
             cityView = itemView.findViewById(R.id.city_in_item);
             linearLayout = itemView.findViewById(R.id.linearLayout_city_rv);
-
             linearLayout.setOnCreateContextMenuListener(this);
         }
 
         public void setData(String city) {
-            getCityView().setText(city);
+            getCityView().setText(city); // почему нельзя cityView().setText(city)??
         }
 
-        public TextView getCityView() {
+        public TextView getCityView() { //это зачем?
             return cityView;
         }
 
@@ -84,5 +70,4 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
             menu.add(this.getAdapterPosition(), MENU_DELETE_ITEM, 0, "Delete");
         }
     }
-
 }
