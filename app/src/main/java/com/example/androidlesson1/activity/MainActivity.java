@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
-import com.example.androidlesson1.SingletonForHistoryOfCities;
+import com.example.androidlesson1.singletons.SingletonForHistoryOfCities;
 import com.example.androidlesson1.workingWithFragments.FragmentBottom;
 import com.example.androidlesson1.workingWithFragments.FragmentTop;
 import com.example.androidlesson1.workingWithFragments.Publisher;

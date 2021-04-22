@@ -16,20 +16,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
-import com.example.androidlesson1.SingletonForImage;
+import com.example.androidlesson1.singletons.SingletonForImage;
 import com.example.androidlesson1.weatherModel.WeatherRequest;
 import com.example.androidlesson1.workingWithWeatherData.WeatherData;
 import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternet;
 
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.TimeZone;
 
 public class FragmentTop extends Fragment implements Constants, Subscriber, WeatherFromInternet {
 

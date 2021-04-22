@@ -4,8 +4,11 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +18,7 @@ import com.example.androidlesson1.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder> {
+public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder> implements Filterable {
 
     private List<String> historyOfCities;
     private List<String> historyOfCitiesFull;
@@ -43,6 +46,40 @@ public class SocnetAdapter extends RecyclerView.Adapter<SocnetAdapter.ViewHolder
     public int getItemCount() {
         return historyOfCities.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return historyOfCitiesFilter;
+    }
+
+    private Filter historyOfCitiesFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<String> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(historyOfCitiesFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (String item : historyOfCitiesFull) {
+                    if (item.toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            historyOfCities.clear();
+            historyOfCities.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener,
             Constants {

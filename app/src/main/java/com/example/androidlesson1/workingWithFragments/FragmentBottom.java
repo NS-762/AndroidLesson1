@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidlesson1.R;
-import com.example.androidlesson1.SingletonForWeatherData;
+import com.example.androidlesson1.singletons.SingletonForWeatherData;
 import com.example.androidlesson1.weatherModelForThirtyDays.WeatherRequestForThirtyDays;
 import com.example.androidlesson1.workingWithRecyclerView.weatherData.SocSource;
 import com.example.androidlesson1.workingWithRecyclerView.weatherData.SocnetAdapter;

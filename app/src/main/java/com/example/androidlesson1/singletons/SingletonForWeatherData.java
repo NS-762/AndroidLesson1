@@ -1,4 +1,4 @@
-package com.example.androidlesson1;
+package com.example.androidlesson1.singletons;
 
 import com.example.androidlesson1.weatherModelForThirtyDays.WeatherRequestForThirtyDays;
 
