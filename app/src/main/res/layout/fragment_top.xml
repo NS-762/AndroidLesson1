@@ -167,8 +167,14 @@
         </LinearLayout>
 
 
+
+
     </LinearLayout>
 
-
+    <com.example.androidlesson1.ThermometerView
+        android:layout_width="90dp"
+        android:layout_height="120dp"
+        app:level="70"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
