@@ -19,25 +19,16 @@ import androidx.annotation.Nullable;
 
 public class ThermometerView extends View {
 
-    private int thermometerColor = Color.WHITE;
-    private int levelColor = Color.GREEN;
-
-    private RectF thermometerRectangle = new RectF();
-    private RectF headRectangle = new RectF();
-
-    private Rect levelRectangle = new Rect();
-    private Paint thermometerPaint;
-    private Paint levelPaint;
-    private int width = 0;
-    private int height = 0;
-    private int level = 100;
-    private final static int padding = 10;
+    private int thermometerColorOut;
+    private Paint thermometerPaintOut;
+    
+    private Paint mercuryBottomPaint;
+    private Paint mercuryTopPaint;
+    
+    private int width;
+    private int height;
+    private int temperature;
     private final static int round = 40;
-    private final static int headWidth = 30;
-
-
-    Bitmap bitmap;
-    Bitmap scaledBitmap;
 
 
     public ThermometerView(Context context) {
@@ -63,37 +54,27 @@ public class ThermometerView extends View {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ThermometerView,
                 0, 0);
 
-        thermometerColor = typedArray.getColor(R.styleable.ThermometerView_thermometer_color, Color.WHITE);
-        levelColor = typedArray.getColor(R.styleable.ThermometerView_level_color, getResources().getColor(R.color.purple_500));
-        level = typedArray.getInteger(R.styleable.ThermometerView_level, 100);
+        thermometerColorOut = typedArray.getColor(R.styleable.ThermometerView_thermometer_color_out, Color.WHITE);
+        temperature = typedArray.getInteger(R.styleable.ThermometerView_temperature, 40);
         typedArray.recycle();
     }
 
     private void init() {
-        thermometerPaint = new Paint();
-        thermometerPaint.setColor(thermometerColor);
-        thermometerPaint.setStyle(Paint.Style.FILL);
+        thermometerPaintOut = new Paint(); //внешняя верхняя часть термометра
+        thermometerPaintOut.setColor(thermometerColorOut);
+        thermometerPaintOut.setStyle(Paint.Style.FILL);
 
-
-        levelPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        Shader shader = createShader();
-
-
-//        levelPaint.setColor(levelColor);
-        levelPaint.setShader(shader);
-        levelPaint.setStyle(Paint.Style.FILL);
+        mercuryBottomPaint = new Paint(); //внутренняя круглая часть термометра
+        mercuryBottomPaint.setColor(Color.parseColor("#ff472b"));
+        mercuryBottomPaint.setStyle(Paint.Style.FILL);
     }
 
     public Shader createShader() {
-        /*bitmap = BitmapFactory.decodeResource(getResources(),
-                R.drawable.my_gradient_drawable);
-        BitmapShader shader = new BitmapShader(bitmap,
-                Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);*/
-        LinearGradient shader = new LinearGradient(0, 0, 0, 130,
+        LinearGradient shader = new LinearGradient(0, 0, width, height * 5 / 6,
                 new int[]{
-                        Color.parseColor("#ff472b"),
+                        Color.parseColor("#a8ff51"),
                         Color.parseColor("#ffd147"),
-                        Color.parseColor("#a8ff51")}
+                        Color.parseColor("#ff472b")}
                 , null, Shader.TileMode.CLAMP);
         return shader;
     }
@@ -102,28 +83,18 @@ public class ThermometerView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-/*        width = w - getPaddingLeft() - getPaddingRight();
-        height = h - getPaddingTop() - getPaddingBottom();*/
-
-
-        width = h / 6;
+        width = h / 6; // чтобы сохранить пропорции градусника
         if (width >= w) {
             width = w;
             height = w * 6;
         } else {
             height = h;
         }
-
-/*        thermometerRectangle.set(padding, height - padding, width - padding - headWidth,
-                padding);
-        headRectangle.set(width - padding - headWidth, 2 * padding, width - padding,
-                height - 2 * padding);
-        levelRectangle.set(2 * padding, 2 * padding, (int)((width-2*padding - headWidth) * ((double)level/(double)100)),
-                height - 2 * padding);*/
-
-
-        thermometerRectangle.set(width / 3, height * 5 / 6, width - (width / 3), 0);
-        headRectangle.set(0, height, width, height * 2 / 3);
+        
+        mercuryTopPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Shader shader = createShader();
+        mercuryTopPaint.setShader(shader);
+        mercuryTopPaint.setStyle(Paint.Style.FILL);
     }
 
     @Override
@@ -131,9 +102,31 @@ public class ThermometerView extends View {
         super.onDraw(canvas);
 
 
-        canvas.drawRoundRect(thermometerRectangle, round, round, thermometerPaint);
-//        canvas.drawRect(levelRectangle, levelPaint);
-//        canvas.drawRoundRect(headRectangle, round, round, thermometerPaint);
-        canvas.drawCircle(width / 2, height * 11 / 12 - height / 50, width / 2, thermometerPaint);
+        canvas.drawRoundRect(width / 3, height * 5 / 6, width - (width / 3), 0,
+                round, round, thermometerPaintOut); //рисует верхнюю часть термометра
+
+        canvas.drawCircle(width / 2, height * 11 / 12 - height / 40, width / 2, thermometerPaintOut); //рисует нижнюю круглую часть термометра
+        canvas.drawCircle(width / 2, height * 11 / 12 - height / 40, (width / 2) * 0.9f, mercuryBottomPaint); //рисует нижнюю часть ртути
+
+
+        canvas.drawRect(width / 3 * 1.2f, height * 5 / 6, width - (width / 3) * 1.2f,
+                calculationOfMercuryLevel(), mercuryTopPaint); //рисует верхнюю часть ртути
+    }
+
+    private float calculationOfMercuryLevel() {
+        float mercuryBottom;
+        if (temperature >= 50) {
+            mercuryBottom = height * 1 / 18; //максимальная температура, минимальный отсуп сверху
+        } else if (temperature <= -50) {
+            mercuryBottom = height - (height * 5 / 18); //опустить ртутный столбик на минимум
+        } else if (temperature >= 0) {
+            mercuryBottom = height * 1 / 18 + ((height * 4 / 6) / 100 * (50 - temperature)); //в ртутном столбце помещается 100 градусов (от -50 до 50)
+            //всю величину ртутного столбика (height * 4 / 6) надо поделить на 100
+            //и опустить вниз на определенное кол-во градусов
+        } else {
+            mercuryBottom = (height *  4 / 6) / 100 * 50; //ртуть на середине, на нуле
+            mercuryBottom += (height *  4 / 6) / 100 * (-1 * temperature); //опустить еще ниже на заданную отрицательную температуру
+        }
+        return mercuryBottom;
     }
 }

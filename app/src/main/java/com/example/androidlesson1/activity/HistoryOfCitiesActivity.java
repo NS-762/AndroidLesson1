@@ -15,9 +15,11 @@ import android.widget.Button;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
+import com.example.androidlesson1.ThermometerView;
 import com.example.androidlesson1.singletons.SingletonForHistoryOfCities;
 import com.example.androidlesson1.workingWithFragments.FragmentDialogBuilder;
 import com.example.androidlesson1.workingWithRecyclerView.historyOfCities.SocnetAdapter;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class HistoryOfCitiesActivity extends AppCompatActivity implements Constants, View.OnCreateContextMenuListener {
 
@@ -97,4 +99,12 @@ public class HistoryOfCitiesActivity extends AppCompatActivity implements Consta
     });
         return true;
     }
+
+
+//    public void setTemperature(View view) {
+//        ThermometerView thermometerView = findViewById(R.id.thermometerView);
+//        TextInputEditText selectCityEditText = findViewById(R.id.input_temperature);
+//
+//        thermometerView.set
+//    }
 }

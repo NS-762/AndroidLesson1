@@ -2,8 +2,7 @@
 <resources>
 
     <declare-styleable name="ThermometerView">
-        <attr name="thermometer_color" format="color" />
-        <attr name="level_color" format="color" />
-        <attr name="level" format="integer" />
+        <attr name="thermometer_color_out" format="color" />
+        <attr name="temperature" format="integer" />
     </declare-styleable>
 </resources>

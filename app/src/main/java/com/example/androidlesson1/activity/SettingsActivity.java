@@ -13,7 +13,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -64,7 +63,7 @@ public class SettingsActivity extends BaseActivity implements Constants {
         GPSButton = findViewById(R.id.GPS);
         GPSButton.setOnClickListener(GPSButtonClickListener);
 
-        selectCityEditText = findViewById(R.id.select_city);
+        selectCityEditText = findViewById(R.id.input_temperture);
         selectCityEditText.setOnFocusChangeListener(selectCityEditTextFocusChangeListener);
 
 /*        citiesViewed = new ArrayList<>();
