@@ -31,16 +31,16 @@ public class HistoryOfCitiesActivity extends AppCompatActivity implements Consta
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_of_cities);
 
-        fragmentDialogBuilder = new FragmentDialogBuilder();
-        Button clearListButton = findViewById(R.id.clear_list_button);
-        clearListButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentDialogBuilder.show(getSupportFragmentManager(), "fragmentDialogBuilder");
-            }
-        });
-
-        initRecyclerView();
+//        fragmentDialogBuilder = new FragmentDialogBuilder();
+//        Button clearListButton = findViewById(R.id.clear_list_button);
+//        clearListButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                fragmentDialogBuilder.show(getSupportFragmentManager(), "fragmentDialogBuilder");
+//            }
+//        });
+//
+//        initRecyclerView();
     }
 
 
@@ -101,10 +101,10 @@ public class HistoryOfCitiesActivity extends AppCompatActivity implements Consta
     }
 
 
-//    public void setTemperature(View view) {
-//        ThermometerView thermometerView = findViewById(R.id.thermometerView);
-//        TextInputEditText selectCityEditText = findViewById(R.id.input_temperature);
-//
-//        thermometerView.set
-//    }
+    public void setTemperature(View view) {
+        ThermometerView thermometerView = findViewById(R.id.thermometerView);
+        TextInputEditText inputTemperatureET = findViewById(R.id.input_temperature);
+
+        thermometerView.changeTemperature(Integer.parseInt(inputTemperatureET.getText().toString()));
+    }
 }

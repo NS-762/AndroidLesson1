@@ -3,6 +3,5 @@
 
     <declare-styleable name="ThermometerView">
         <attr name="thermometer_color_out" format="color" />
-        <attr name="temperature" format="integer" />
     </declare-styleable>
 </resources>
