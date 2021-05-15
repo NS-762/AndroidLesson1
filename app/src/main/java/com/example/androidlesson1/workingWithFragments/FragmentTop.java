@@ -99,7 +99,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     }
 
     @Override
-    public void updateData(String newDay, String newTemperature, Drawable newWeatherPicture, String newWind,
+    public void updateData(String newDay, String newTemperature, Drawable newWeatherPicture, String newWind, //после нажатия на какой-то день в нижнем фрагменте
                            String newPressure, String newHumidity, String newDescription) {
         dayTextView.setText(newDay);
         temperatureTextView.setText(newTemperature);
@@ -133,59 +133,14 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     }
 
     @Override
-    public void setWeatherFromInternet(WeatherRequest weatherRequest) {
-        int temp = (int) weatherRequest.getMain().getTemp();
-        int pressure = weatherRequest.getMain().getPressure();
-        int humidity = weatherRequest.getMain().getHumidity();
-        float wind = weatherRequest.getWind().getSpeed();
-        String mainDescription = weatherRequest.getWeather().get(0).getMain();
-
-
-        int weatherPicture;
-        switch (mainDescription) {
-            case ("Thunderstorm"):
-                weatherPicture = R.drawable.thunderstorm;
-                descriptionTextView.setText("THUNDERSTORM");
-                break;
-            case ("Drizzle"):
-                weatherPicture = R.drawable.drizzle;
-                descriptionTextView.setText("DRIZZLE");
-                break;
-            case ("Rain"):
-                weatherPicture = R.drawable.rain; //тут можно сделать ночной/дневной дождь
-                descriptionTextView.setText("RAIN");
-                break;
-            case ("Snow"):
-                weatherPicture = R.drawable.snow;
-                descriptionTextView.setText("SNOW");
-                break;
-            case ("Clear"):
-                weatherPicture = R.drawable.clear_day; //тут можно луну или солнце
-                descriptionTextView.setText("CLEAR");
-                break;
-            case ("Clouds"):
-                weatherPicture = R.drawable.clouds_day;
-                descriptionTextView.setText("CLOUDS");
-                break;
-            default:
-                descriptionTextView.setText("СYCLONE");
-                weatherPicture = R.drawable.cyclone;
-        }
-
-        temperatureTextView.setText(temp + "\u00B0");
-        windTextView.setText(Float.toString(wind) + "0");
-        pressureTextView.setText(Integer.toString(pressure));
-        humidityTextView.setText(Integer.toString(humidity) + ",0");
+    public void setWeatherFromInternet(String description, String temp, String wind, //сюда приходят данные из интернета
+                                       String pressure, String humidity, int weatherPicture,
+                                       String dayText) {
+        temperatureTextView.setText(temp);
+        windTextView.setText(wind);
+        pressureTextView.setText(pressure);
+        humidityTextView.setText(humidity);
         weatherPictureView.setImageResource(weatherPicture);
-
-
-
-        long unixSeconds = weatherRequest.getDt(); // секунды
-        Date dateFormat = new java.util.Date(unixSeconds * 1000);
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-        String dayText = sdf.format(dateFormat);
-
         dayTextView.setText(dayText);
     }
 
