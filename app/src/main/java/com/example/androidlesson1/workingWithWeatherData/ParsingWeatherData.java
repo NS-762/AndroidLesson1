@@ -1,5 +1,7 @@
 package com.example.androidlesson1.workingWithWeatherData;
 
+import android.os.Handler;
+
 import com.example.androidlesson1.R;
 import com.example.androidlesson1.weatherModel.WeatherRequest;
 
@@ -8,36 +10,25 @@ import java.util.Date;
 
 public class ParsingWeatherData {
 
-    public String parsingDescription(WeatherRequest weatherRequest) {
+    private WeatherFromInternet weatherFromInternet;
+    private Handler handler;
+    private WeatherRequest weatherRequest;
+
+    public ParsingWeatherData(WeatherFromInternet weatherFromInternet, Handler handler,
+                              WeatherRequest weatherRequest) {
+        this.weatherFromInternet = weatherFromInternet;
+        this.handler = handler;
+        this.weatherRequest = weatherRequest;
+    }
+
+    public void parsingAndSendData() {
         String mainDescription = weatherRequest.getWeather().get(0).getMain();
-        return mainDescription;
-    }
-
-    public String parsingTemperature(WeatherRequest weatherRequest) {
-        int temp = (int) weatherRequest.getMain().getTemp();
-        return temp + "\u00B0";
-    }
-
-    public String parsingWind(WeatherRequest weatherRequest) {
-        float wind = weatherRequest.getWind().getSpeed();
-        return wind + "0";
-
-    }
-
-    public String parsingPressure(WeatherRequest weatherRequest) {
+        String temp = (int) weatherRequest.getMain().getTemp() + "\u00B0";
+        String wind = weatherRequest.getWind().getSpeed() + "0";
         String pressure = Integer.toString(weatherRequest.getMain().getPressure());
-        return pressure;
-    }
+        String humidity = weatherRequest.getMain().getHumidity() +  ",0";
 
-    public String parsingHumidity(WeatherRequest weatherRequest) {
-        int humidity = weatherRequest.getMain().getHumidity();
-        return humidity + ",0";
-    }
-
-    public int parsingWeatherPicture(WeatherRequest weatherRequest) {
-        String mainDescription = weatherRequest.getWeather().get(0).getMain();
         int weatherPicture;
-
         switch (mainDescription) {
             case ("Thunderstorm"):
                 weatherPicture = R.drawable.thunderstorm;
@@ -46,13 +37,13 @@ public class ParsingWeatherData {
                 weatherPicture = R.drawable.drizzle;
                 break;
             case ("Rain"):
-                weatherPicture = R.drawable.rain; //тут можно сделать ночной/дневной дождь
+                weatherPicture = R.drawable.rain; //можно сделать ночной/дневной дождь
                 break;
             case ("Snow"):
                 weatherPicture = R.drawable.snow;
                 break;
             case ("Clear"):
-                weatherPicture = R.drawable.clear_day; //тут можно луну или солнце
+                weatherPicture = R.drawable.clear_day; //можно сделать смену луны и солнца
                 break;
             case ("Clouds"):
                 weatherPicture = R.drawable.clouds_day;
@@ -61,16 +52,18 @@ public class ParsingWeatherData {
                 weatherPicture = R.drawable.cyclone;
         }
 
-        return weatherPicture;
-    }
-
-    public String parsingDate(WeatherRequest weatherRequest) {
         long unixSeconds = weatherRequest.getDt(); // секунды
         Date dateFormat = new java.util.Date(unixSeconds * 1000);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
         String dayText = sdf.format(dateFormat);
-        return dayText;
-    }
 
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                weatherFromInternet.setWeatherFromInternet(mainDescription, temp, wind, pressure,
+                        humidity, weatherPicture, dayText);
+            }
+        });
+    }
 }

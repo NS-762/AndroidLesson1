@@ -59,21 +59,9 @@ public class WeatherData {
                         Gson gson = new Gson();
                         weatherRequest = gson.fromJson(result, WeatherRequest.class);
 
-                        ParsingWeatherData parsingWeatherData = new ParsingWeatherData();
-                        String description = parsingWeatherData.parsingDescription(weatherRequest);
-                        String temp = parsingWeatherData.parsingTemperature(weatherRequest);
-                        String wind = parsingWeatherData.parsingWind(weatherRequest);
-                        String pressure = parsingWeatherData.parsingPressure(weatherRequest);
-                        String humidity = parsingWeatherData.parsingHumidity(weatherRequest);
-                        int weatherPicture = parsingWeatherData.parsingWeatherPicture(weatherRequest);
-                        String date = parsingWeatherData.parsingDate(weatherRequest);
-
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                weatherFromInternet.setWeatherFromInternet(description, temp, wind, pressure, humidity, weatherPicture, date);
-                            }
-                        });
+                        ParsingWeatherData parsingWeatherData =
+                                new ParsingWeatherData(weatherFromInternet, handler, weatherRequest); //класс для парсинга данных
+                        parsingWeatherData.parsingAndSendData();
 
                     } catch (Exception e) {
                         Log.e(TAG, "Fail connection", e);
