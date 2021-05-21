@@ -11,13 +11,10 @@ import java.util.Date;
 public class ParsingWeatherData {
 
     private WeatherFromInternet weatherFromInternet;
-    private Handler handler;
     private WeatherRequest weatherRequest;
 
-    public ParsingWeatherData(WeatherFromInternet weatherFromInternet, Handler handler,
-                              WeatherRequest weatherRequest) {
+    public ParsingWeatherData(WeatherFromInternet weatherFromInternet, WeatherRequest weatherRequest) {
         this.weatherFromInternet = weatherFromInternet;
-        this.handler = handler;
         this.weatherRequest = weatherRequest;
     }
 
@@ -26,7 +23,7 @@ public class ParsingWeatherData {
         String temp = (int) weatherRequest.getMain().getTemp() + "\u00B0";
         String wind = weatherRequest.getWind().getSpeed() + "0";
         String pressure = Integer.toString(weatherRequest.getMain().getPressure());
-        String humidity = weatherRequest.getMain().getHumidity() +  ",0";
+        String humidity = weatherRequest.getMain().getHumidity() + ",0";
 
         int weatherPicture;
         switch (mainDescription) {
@@ -58,12 +55,9 @@ public class ParsingWeatherData {
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
         String dayText = sdf.format(dateFormat);
 
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                weatherFromInternet.setWeatherFromInternet(mainDescription, temp, wind, pressure,
-                        humidity, weatherPicture, dayText);
-            }
-        });
+
+        weatherFromInternet.setWeatherFromInternet(mainDescription, temp, wind, pressure,
+                humidity, weatherPicture, dayText);
+
     }
 }

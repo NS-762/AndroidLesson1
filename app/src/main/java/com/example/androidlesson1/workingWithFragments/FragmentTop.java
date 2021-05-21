@@ -1,5 +1,6 @@
 package com.example.androidlesson1.workingWithFragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     private SharedPreferences sharedPreferences;
     private boolean isDataUpdateRequired = true;
     private String cityText;
+    private Handler handler;
 
 
     public void setDataUpdateRequired(boolean dataUpdateRequired) {
@@ -136,12 +139,18 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     public void setWeatherFromInternet(String description, String temp, String wind, //сюда приходят данные из интернета
                                        String pressure, String humidity, int weatherPicture,
                                        String dayText) {
-        temperatureTextView.setText(temp);
-        windTextView.setText(wind);
-        pressureTextView.setText(pressure);
-        humidityTextView.setText(humidity);
-        weatherPictureView.setImageResource(weatherPicture);
-        dayTextView.setText(dayText);
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                temperatureTextView.setText(temp);
+                windTextView.setText(wind);
+                pressureTextView.setText(pressure);
+                humidityTextView.setText(humidity);
+                weatherPictureView.setImageResource(weatherPicture);
+                dayTextView.setText(dayText);
+            }
+        });
+
     }
 
     private void init() {
@@ -154,5 +163,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         humidityTextView = view.findViewById(R.id.humidity_0);
         descriptionTextView = view.findViewById(R.id.description_0);
         cityText = cityTextView.getText().toString();
+
+        handler = new Handler();
     }
 }
