@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
@@ -17,17 +16,17 @@ import android.widget.Toast;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
+import com.example.androidlesson1.singletons.SingletonForHistoryOfCities;
 import com.example.androidlesson1.workingWithFragments.FragmentBottom;
 import com.example.androidlesson1.workingWithFragments.FragmentTop;
 import com.example.androidlesson1.workingWithFragments.Publisher;
 import com.example.androidlesson1.workingWithFragments.PublisherGetter;
-import com.example.androidlesson1.workingWithWeatherData.WeatherData;
-import com.example.androidlesson1.workingWithWeatherData.WeatherDataForThirtyDays;
 
 
 public class MainActivity extends BaseActivity implements Constants, PublisherGetter {
 
     private final int REQUEST_SETTINGS_ACTIVITY = 1;
+    private final int REQUEST_HISTORY_OF_CITIES_ACTIVITY = 1;
 
     private FragmentTop fragmentTop;
     private FragmentBottom fragmentBottom;
@@ -89,10 +88,23 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { //обработка нажатий на пункты меню
         int id = item.getItemId();
-        if (id == R.id.menu_settings) {
-            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class); //создание интента для окна настроек
-            startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
+        Intent intent;
+
+        switch (id) {
+            case (R.id.menu_settings):
+                intent = new Intent(getApplicationContext(), SettingsActivity.class); //создание интента для окна настроек
+                startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
+                break;
+            case (R.id.menu_history_of_cities):
+                intent = new Intent(getApplicationContext(), HistoryOfCitiesActivity.class); //создание интента для окна настроек
+                startActivityForResult(intent, REQUEST_HISTORY_OF_CITIES_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
+                break;
         }
+
+/*        if (id == R.id.menu_settings) {
+            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class); //создание интента для окна настроек
+            startActivityForResult(intent, REQUEST_HISTORY_OF_CITIES_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
+        }*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -113,8 +125,14 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
             if (newCity.replaceAll("\\s+", "").equals("")) { //если в настройках не был выбран город или введна пустота
                 newCity = getString(R.string.city_1); //по умолчанию ставится Москва
             }
-            fragmentTop.updateSettings(newCity);
+            fragmentTop.updateCity(newCity);
             fragmentTop.setDataUpdateRequired(true); //выбран новый город, поэтому требуется обнолвение данных
+
+            fragmentBottom.updateCity(newCity);
+            fragmentBottom.setDataUpdateRequired(true); //выбран новый город, поэтому требуется обнолвение данных
+
+            SingletonForHistoryOfCities.getInstance().addCityInHistory(newCity); //добавление города в историю просмотренных городов
+
             recreate();
         }
 
@@ -165,20 +183,19 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
     }
 
     private void setBackgroundImage(final int orientation) { //установка фона активити
-        ConstraintLayout constraintLayout;
+/*        ConstraintLayout constraintLayout;
         constraintLayout = findViewById(R.id.constraint_layout);
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            constraintLayout.setBackgroundResource(R.drawable.fon_portrait);
+//            constraintLayout.setBackgroundResource(R.drawable.fon_portrait);
+            constraintLayout.setBackgroundResource(R.drawable.test_fon3);
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             constraintLayout.setBackgroundResource(R.drawable.fon_landscape);
-        }
+        }*/
     }
 
     private void init() {
 
     }
-
-
 }
 

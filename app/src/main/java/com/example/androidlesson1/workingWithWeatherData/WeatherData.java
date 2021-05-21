@@ -41,9 +41,6 @@ public class WeatherData {
     public void getWeatherData() {
         try {
             final URL uri = new URL(WEATHER_URL +  BuildConfig.WEATHER_API_KEY);
-            final Handler handler = new Handler();
-
-
             new Thread(new Runnable() {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
@@ -59,12 +56,9 @@ public class WeatherData {
                         Gson gson = new Gson();
                         weatherRequest = gson.fromJson(result, WeatherRequest.class);
 
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                weatherFromInternet.setWeatherFromInternet(weatherRequest);
-                            }
-                        });
+                        ParsingWeatherData parsingWeatherData =
+                                new ParsingWeatherData(weatherFromInternet, weatherRequest); //класс для парсинга данных
+                        parsingWeatherData.parsingAndSendData();
 
                     } catch (Exception e) {
                         Log.e(TAG, "Fail connection", e);

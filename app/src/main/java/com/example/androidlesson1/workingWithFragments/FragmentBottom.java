@@ -8,14 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidlesson1.R;
+import com.example.androidlesson1.singletons.SingletonForWeatherData;
 import com.example.androidlesson1.weatherModelForThirtyDays.WeatherRequestForThirtyDays;
-import com.example.androidlesson1.workingWithRecyclerView.SocSource;
-import com.example.androidlesson1.workingWithRecyclerView.SocnetAdapter;
+import com.example.androidlesson1.workingWithRecyclerView.weatherData.SocSource;
+import com.example.androidlesson1.workingWithRecyclerView.weatherData.SocnetAdapter;
 import com.example.androidlesson1.workingWithWeatherData.WeatherDataForThirtyDays;
 import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternetForThirtyDays;
 
@@ -23,6 +25,9 @@ public class FragmentBottom extends Fragment implements ItemClickListener, Weath
 
     private Publisher publisher;
     private WeatherRequestForThirtyDays weatherRequestForThirtyDays;
+    private View view;
+    private String cityText;
+    private boolean isDataUpdateRequired = true;
 
     public static FragmentBottom create() { //фабричный метод
         FragmentBottom fragmentBottom = new FragmentBottom();
@@ -40,18 +45,30 @@ public class FragmentBottom extends Fragment implements ItemClickListener, Weath
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_bottom, container, false);
-        SocSource socSource = new SocSource(getResources());
-        initRecyclerView(view, socSource.build()); //передать в RV socSource с заполненным списком внутри
+        view = inflater.inflate(R.layout.fragment_bottom, container, false);
 
-        WeatherDataForThirtyDays weatherDataForThirtyDays = new WeatherDataForThirtyDays(this,"Moscow");
-        weatherDataForThirtyDays.getWeatherDataForThirtyDays();
 
+        if (savedInstanceState != null) {
+            isDataUpdateRequired = savedInstanceState.getBoolean("IsDataUpdateRequired");
+            cityText = savedInstanceState.getString("city"); //название говорода, для которого будут скачиваться данные
+        }
+
+
+        if (savedInstanceState != null && !isDataUpdateRequired) { //если есть сохраненные данные и нет необходимости их обновлять (переворот)
+            cityText = savedInstanceState.getString("city");
+            weatherRequestForThirtyDays = SingletonForWeatherData.getInstance().getWeatherRequest();
+            SocSource socSource = new SocSource(weatherRequestForThirtyDays, getResources());
+            initRecyclerView(view, socSource.build()); //передать в RV socSource с заполненным списком внутри
+        } else { //в противном случае загрузить данные из интернета
+            WeatherDataForThirtyDays weatherDataForThirtyDays = new WeatherDataForThirtyDays(this, cityText);
+            weatherDataForThirtyDays.getWeatherDataForThirtyDays();
+            isDataUpdateRequired = false; //это нужно, чтобы при смене ориентации не скачивались новые данные
+        }
         return view;
     }
 
     public void initRecyclerView(View view, SocSource socSource) {
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view_history);
         recyclerView.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -62,13 +79,36 @@ public class FragmentBottom extends Fragment implements ItemClickListener, Weath
     }
 
     @Override
-    public void notifySubscribers(String newDate, String newDayOfWeek, String newTemperature, Drawable newWeatherPicture) {
-        publisher.notifySubscribers(newDate, newDayOfWeek, newTemperature, newWeatherPicture);
+    public void notifySubscribers(String newDayOfWeek, String newTemperature,
+                                  Drawable newWeatherPicture, String newWind, String newPressure,
+                                  String newHumidity, String newDescription) {
+        publisher.notifySubscribers(newDayOfWeek, newTemperature, newWeatherPicture, newWind,
+                newPressure, newHumidity, newDescription);
     }
 
     @Override
     public void setWeatherForThirtyDays(WeatherRequestForThirtyDays weatherRequestForThirtyDays) {
         this.weatherRequestForThirtyDays = weatherRequestForThirtyDays;
         Toast.makeText(getActivity(), "Данные на пять дней скачаны", Toast.LENGTH_SHORT).show();
+
+        SocSource socSource = new SocSource(weatherRequestForThirtyDays, getResources());
+        initRecyclerView(view, socSource.build()); //передать в RV socSource с заполненным списком внутри
     }
+
+    public void updateCity(String newCity) {
+        cityText = newCity;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("city", cityText);
+        outState.putBoolean("IsDataUpdateRequired", isDataUpdateRequired);
+        SingletonForWeatherData.getInstance().setWeatherRequest(weatherRequestForThirtyDays);
+    }
+
+    public void setDataUpdateRequired(boolean dataUpdateRequired) {
+        isDataUpdateRequired = dataUpdateRequired;
+    }
+
 }

@@ -18,13 +18,13 @@
     <string name="date_6">January 8, 2021</string>
     <string name="date_7">January 9, 2021</string>
 
-    <string name="day_of_week_1">sunday</string>
-    <string name="day_of_week_2">monday</string>
-    <string name="day_of_week_3">tuesday</string>
-    <string name="day_of_week_4">wednesday</string>
-    <string name="day_of_week_5">thursday</string>
-    <string name="day_of_week_6">friday</string>
-    <string name="day_of_week_7">saturday</string>
+    <string name="day_of_week_1">Sunday</string>
+    <string name="day_of_week_2">Monday</string>
+    <string name="day_of_week_3">Tuesday</string>
+    <string name="day_of_week_4">Wednesday</string>
+    <string name="day_of_week_5">Thursday</string>
+    <string name="day_of_week_6">Friday</string>
+    <string name="day_of_week_7">Saturday</string>
 
     <string name="temperature_0">-6</string>
     <string name="temperature_1">8</string>
@@ -47,8 +47,8 @@
 
     <string name="save_and_out">Save and out</string>
 
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="clear_list">Clear list</string>
+    <string name="title_dialog">Are you sure want to delete city\'s browsing history?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

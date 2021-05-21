@@ -30,14 +30,17 @@
         <item>17</item>
     </string-array>
 
-    <array name="weather_picture">
-        <item>@drawable/rain</item>
+<!--    <array name="weather_picture">
         <item>@drawable/cloudy</item>
-        <item>@drawable/sun</item>
-        <item>@drawable/snowy</item>
+        <item>@drawable/crescent_moon</item>
+        <item>@drawable/cyclone</item>
+        <item>@drawable/daytime_rain</item>
+        <item>@drawable/half_moon</item>
         <item>@drawable/lightning</item>
         <item>@drawable/night_rain</item>
-        <item>@drawable/half_moon</item>
-    </array>
+        <item>@drawable/rain</item>
+        <item>@drawable/snowy</item>
+        <item>@drawable/sun</item>
+    </array>-->
 
 </resources>

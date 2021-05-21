@@ -47,5 +47,9 @@
     <string name="city_3">Ставрополь</string>
 
     <string name="save_and_out">Сохранить и выйти</string>
+    <string name="clear_list">Отчистить список</string>
+    <string name="title_dialog">Вы уверены, что хотите удалить историю просмотров городов?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 
 </resources>

@@ -21,9 +21,12 @@ public class Publisher {
         subscribers.add(subscriber);
     }
 
-    public void notifySubscribers(String newDate, String newDayOfWeek, String newTemperature, Drawable newWeatherPicture) {
+    public void notifySubscribers(String newDayOfWeek, String newTemperature, Drawable newWeatherPicture,
+                                  String newWind, String newPressure, String newHumidity,
+                                  String newDescription) {
         for (Subscriber s : subscribers) {
-            s.updateData(newDate, newDayOfWeek, newTemperature, newWeatherPicture);
+            s.updateData(newDayOfWeek, newTemperature, newWeatherPicture, newWind,
+                    newPressure, newHumidity, newDescription);
         }
     }
 }

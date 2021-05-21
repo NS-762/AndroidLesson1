@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content" >
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/select_city"
+                        android:id="@+id/input_temperture"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_city" />

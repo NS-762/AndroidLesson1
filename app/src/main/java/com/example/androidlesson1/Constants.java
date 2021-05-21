@@ -2,9 +2,10 @@ package com.example.androidlesson1;
 
 public interface Constants {
 
-    String CITY = "com.example.mainActivity.CITY_NAME"; // из настроек отправляется в основное активити
-    String TEMPERATURE = "temperature";
-    String DATE = "date";
-    String DAY_OF_WEEK = "dayOfWeek";
-    String WEATHER_PICTURE = "weatherPicture";
+    final String CITY = "com.example.mainActivity.cityNAME"; // из настроек отправляется в основное активити
+    final String TEMPERATURE = "temperature";
+    final String DATE = "date";
+    final String DAY_OF_WEEK = "dayOfWeek";
+    final String WEATHER_PICTURE = "weatherPicture";
+    final int MENU_DELETE_ITEM = 1;
 }
