@@ -19,9 +19,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.androidlesson1.BuildConfig;
 import com.example.androidlesson1.Constants;
+import com.example.androidlesson1.OpenWeather;
 import com.example.androidlesson1.R;
 import com.example.androidlesson1.singletons.SingletonForImage;
+import com.example.androidlesson1.singletons.SingletonRetrofit;
 import com.example.androidlesson1.weatherModel.WeatherRequest;
 import com.example.androidlesson1.workingWithWeatherData.WeatherData;
 import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternet;
@@ -29,6 +32,10 @@ import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternet;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentTop extends Fragment implements Constants, Subscriber, WeatherFromInternet {
 
@@ -45,6 +52,8 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     private boolean isDataUpdateRequired = true;
     private String cityText;
     private Handler handler;
+
+    private OpenWeather openWeather;
 
 
     public void setDataUpdateRequired(boolean dataUpdateRequired) {
@@ -82,9 +91,11 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
             humidityTextView.setText(savedInstanceState.getString("humidity"));
             weatherPictureView = SingletonForImage.getInstance().getWeatherPicture();
         } else { //в противном случае загрузить данные из интернета
-            WeatherData weatherData = new WeatherData(this,
+/*            WeatherData weatherData = new WeatherData(this,
                     cityText);
-            weatherData.getWeatherData();
+            weatherData.getWeatherData();*/
+
+            requestRetrofit(cityText, "metric", BuildConfig.WEATHER_API_KEY);
             cityTextView.setText(cityText);
             isDataUpdateRequired = false; //это нужно, чтобы при смене ориентации не скачивались новые данные
         }
@@ -153,6 +164,24 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
 
     }
 
+    private void requestRetrofit(String city, String units, String keyApi) {
+        openWeather.loadWeatherForOneDay(city, units, keyApi)
+                .enqueue(new Callback<WeatherRequest>() {
+                    @Override
+                    public void onResponse(Call<WeatherRequest> call, Response<WeatherRequest> response) {
+                        if (response.body() != null) {
+                            setWeatherDataFromInternet(response);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<WeatherRequest> call, Throwable t) {
+
+                    }
+                });
+    }
+
+
     private void init() {
         cityTextView = view.findViewById(R.id.city_0);
         temperatureTextView = view.findViewById(R.id.temperature_0);
@@ -163,7 +192,57 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         humidityTextView = view.findViewById(R.id.humidity_0);
         descriptionTextView = view.findViewById(R.id.description_0);
         cityText = cityTextView.getText().toString();
-
         handler = new Handler();
+
+        openWeather = SingletonRetrofit.getInstance().getRetrofit().create(OpenWeather.class);
+    }
+
+
+
+    public void setWeatherDataFromInternet(Response<WeatherRequest> response) {
+        String mainDescription = response.body().getWeather().get(0).getMain();
+        String temp = (int) response.body().getMain().getTemp() + "\u00B0";
+        String wind = response.body().getWind().getSpeed() + "0";
+        String pressure = Integer.toString(response.body().getMain().getPressure());
+        String humidity = response.body().getMain().getHumidity() + ",0";
+
+        int weatherPicture;
+        switch (mainDescription) {
+            case ("Thunderstorm"):
+                weatherPicture = R.drawable.thunderstorm;
+                break;
+            case ("Drizzle"):
+                weatherPicture = R.drawable.drizzle;
+                break;
+            case ("Rain"):
+                weatherPicture = R.drawable.rain; //можно сделать ночной/дневной дождь
+                break;
+            case ("Snow"):
+                weatherPicture = R.drawable.snow;
+                break;
+            case ("Clear"):
+                weatherPicture = R.drawable.clear_day; //можно сделать смену луны и солнца
+                break;
+            case ("Clouds"):
+                weatherPicture = R.drawable.clouds_day;
+                break;
+            default:
+                weatherPicture = R.drawable.cyclone;
+        }
+
+        long unixSeconds = response.body().getDt(); // секунды
+        Date dateFormat = new java.util.Date(unixSeconds * 1000);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+        String dayText = sdf.format(dateFormat);
+
+        temperatureTextView.setText(temp);
+        windTextView.setText(wind);
+        pressureTextView.setText(pressure);
+        humidityTextView.setText(humidity);
+        weatherPictureView.setImageResource(weatherPicture);
+        dayTextView.setText(dayText);
+
+
     }
 }
