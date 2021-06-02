@@ -46,9 +46,17 @@
     <string name="city_3">Stavropol</string>
 
     <string name="save_and_out">Save and out</string>
-
     <string name="clear_list">Clear list</string>
     <string name="title_dialog">Are you sure want to delete city\'s browsing history?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="history_of_cities">History of cities</string>
+    <string name="thermometer">Thermometer</string>
+    <string name="search">Search</string>
+    <string name="set_temperature">Set temperature</string>
+    <string name="input_temperature">input temperature</string>
+    <string name="thunderstorm">THUNDERSTORM</string>
+    <string name="wind_and_colon">Wind: </string>
+    <string name="pressure_and_colon">Pressure: </string>
+    <string name="humidity_and_colon">Humidity: </string>
 </resources>

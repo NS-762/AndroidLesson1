@@ -67,6 +67,8 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         return fragmentTop;
     }
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,6 +112,8 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override

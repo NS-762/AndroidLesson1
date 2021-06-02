@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
+import com.example.androidlesson1.ThermometerActivity;
 import com.example.androidlesson1.singletons.SingletonForHistoryOfCities;
 import com.example.androidlesson1.workingWithFragments.FragmentBottom;
 import com.example.androidlesson1.workingWithFragments.FragmentTop;
@@ -93,11 +94,15 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
         switch (id) {
             case (R.id.menu_settings):
                 intent = new Intent(getApplicationContext(), SettingsActivity.class); //создание интента для окна настроек
-                startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
+                startActivityForResult(intent, REQUEST_SETTINGS_ACTIVITY); //отправить интент и указать константу окна-отправителя
                 break;
             case (R.id.menu_history_of_cities):
-                intent = new Intent(getApplicationContext(), HistoryOfCitiesActivity.class); //создание интента для окна настроек
-                startActivityForResult(intent, REQUEST_HISTORY_OF_CITIES_ACTIVITY); //отправить интент и указать константу окна-отрпавителя
+                intent = new Intent(getApplicationContext(), HistoryOfCitiesActivity.class);
+                startActivity(intent);
+                break;
+            case (R.id.menu_thermometer):
+                intent = new Intent(getApplicationContext(), ThermometerActivity.class);
+                startActivity(intent);
                 break;
         }
 
@@ -126,10 +131,10 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
                 newCity = getString(R.string.city_1); //по умолчанию ставится Москва
             }
             fragmentTop.updateCity(newCity);
-            fragmentTop.setDataUpdateRequired(true); //выбран новый город, поэтому требуется обнолвение данных
+            fragmentTop.setDataUpdateRequired(true); //выбран новый город, поэтому требуется обновление данных
 
             fragmentBottom.updateCity(newCity);
-            fragmentBottom.setDataUpdateRequired(true); //выбран новый город, поэтому требуется обнолвение данных
+            fragmentBottom.setDataUpdateRequired(true); //выбран новый город, поэтому требуется обновление данных
 
             SingletonForHistoryOfCities.getInstance().addCityInHistory(newCity); //добавление города в историю просмотренных городов
 

@@ -39,7 +39,7 @@ public class FragmentBottom extends Fragment implements ItemClickListener, Weath
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        publisher = ((PublisherGetter) context).getPublisher();
+        publisher = ((PublisherGetter)context).getPublisher();
     }
 
     @Override

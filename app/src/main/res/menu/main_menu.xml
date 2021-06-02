@@ -4,7 +4,9 @@
 
     <item android:title="@string/settings"
         android:id="@+id/menu_settings"/>
-    <item android:title="History of cities"
+    <item android:title="@string/history_of_cities"
         android:id="@+id/menu_history_of_cities"/>
+    <item android:title="@string/thermometer"
+        android:id="@+id/menu_thermometer"/>
 
 </menu>

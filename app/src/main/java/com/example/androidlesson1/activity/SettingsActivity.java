@@ -13,7 +13,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class SettingsActivity extends BaseActivity implements Constants {
@@ -23,7 +22,6 @@ public class SettingsActivity extends BaseActivity implements Constants {
     private MaterialButton saveSettings;
     private MaterialButton GPSButton;
     private Switch switchDarkTheme;
-    private List<String> citiesViewed;
 
     Pattern patternCheckCity = Pattern.compile("^[A-Z][a-z]{2,}$");
 
@@ -51,7 +49,6 @@ public class SettingsActivity extends BaseActivity implements Constants {
         selectCityEditText.setText(cityN.getText());
     }
 
-
     public void init() {
         saveSettings = findViewById(R.id.save_settings);
         saveSettings.setOnClickListener(saveSettingsClickListener);
@@ -65,27 +62,18 @@ public class SettingsActivity extends BaseActivity implements Constants {
 
         selectCityEditText = findViewById(R.id.input_temperture);
         selectCityEditText.setOnFocusChangeListener(selectCityEditTextFocusChangeListener);
-
-/*        citiesViewed = new ArrayList<>();
-        citiesViewed.add("Moscow");*/
     }
 
     View.OnClickListener saveSettingsClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intentResult = new Intent(); //создание интента
-
             String selectCity = selectCityEditText.getText().toString();
             intentResult.putExtra(CITY, selectCity); //запись в интент названия города с пометкой cityNAME
             setResult(RESULT_OK, intentResult); //установка результата RESULT_OK и отправка интента
-
-/*            if (!citiesViewed.contains(selectCity)) { //если данного города нет в списке ранее просмотренных
-                citiesViewed.add(selectCity); //то добавить его
-            }*/
             finish();
         }
     };
-
 
     CompoundButton.OnCheckedChangeListener switchDarkThemeCheckedListener = new CompoundButton.OnCheckedChangeListener() {
         @Override

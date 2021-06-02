@@ -52,4 +52,14 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
 
+    <string name="history_of_cities">История просмотров городов</string>
+    <string name="thermometer">Терометр</string>
+    <string name="search">Поиск</string>
+    <string name="set_temperature">Установить температуру</string>
+    <string name="input_temperature">Ввод температуры</string>
+    <string name="thunderstorm">Гроза</string>
+    <string name="wind_and_colon">Ветер:</string>
+    <string name="pressure_and_colon">Давление:</string>
+    <string name="humidity_and_colon">Влажность:</string>
+
 </resources>
