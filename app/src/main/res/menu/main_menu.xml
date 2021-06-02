@@ -8,5 +8,7 @@
         android:id="@+id/menu_history_of_cities"/>
     <item android:title="@string/thermometer"
         android:id="@+id/menu_thermometer"/>
+    <item android:title="@string/website"
+        android:id="@+id/menu_website"/>
 
 </menu>

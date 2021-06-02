@@ -8,22 +8,31 @@ import com.example.androidlesson1.weatherModel.WeatherRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import retrofit2.Response;
+
 public class ParsingWeatherData {
 
     private WeatherFromInternet weatherFromInternet;
     private WeatherRequest weatherRequest;
 
-    public ParsingWeatherData(WeatherFromInternet weatherFromInternet, WeatherRequest weatherRequest) {
+    private Response<WeatherRequest> response; //данные, полученные с помощью ретрофита
+
+/*    public ParsingWeatherData(WeatherFromInternet weatherFromInternet, WeatherRequest weatherRequest) {
         this.weatherFromInternet = weatherFromInternet;
         this.weatherRequest = weatherRequest;
+    }*/
+
+    public ParsingWeatherData(WeatherFromInternet weatherFromInternet, Response<WeatherRequest> response) {
+        this.weatherFromInternet = weatherFromInternet;
+        this.response = response;
     }
 
     public void parsingAndSendData() {
-        String mainDescription = weatherRequest.getWeather().get(0).getMain();
-        String temp = (int) weatherRequest.getMain().getTemp() + "\u00B0";
-        String wind = weatherRequest.getWind().getSpeed() + "0";
-        String pressure = Integer.toString(weatherRequest.getMain().getPressure());
-        String humidity = weatherRequest.getMain().getHumidity() + ",0";
+        String mainDescription = response.body().getWeather().get(0).getMain();
+        String temp = (int) response.body().getMain().getTemp() + "\u00B0";
+        String wind = response.body().getWind().getSpeed() + "0";
+        String pressure = Integer.toString(response.body().getMain().getPressure());
+        String humidity = response.body().getMain().getHumidity() + ",0";
 
         int weatherPicture;
         switch (mainDescription) {
@@ -49,7 +58,7 @@ public class ParsingWeatherData {
                 weatherPicture = R.drawable.cyclone;
         }
 
-        long unixSeconds = weatherRequest.getDt(); // секунды
+        long unixSeconds = response.body().getDt(); // секунды
         Date dateFormat = new java.util.Date(unixSeconds * 1000);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");

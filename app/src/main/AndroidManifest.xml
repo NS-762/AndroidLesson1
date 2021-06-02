@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppLightTheme">
-        <activity android:name=".ThermometerActivity"></activity>
+        <activity android:name=".activity.WebsiteActivity"></activity>
+        <activity android:name=".activity.ThermometerActivity" />
         <activity android:name=".activity.HistoryOfCitiesActivity" />
         <activity android:name=".activity.SettingsActivity" />
         <activity android:name=".activity.MainActivity">

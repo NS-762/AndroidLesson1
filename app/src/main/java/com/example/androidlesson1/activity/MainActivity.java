@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.androidlesson1.Constants;
 import com.example.androidlesson1.R;
-import com.example.androidlesson1.ThermometerActivity;
 import com.example.androidlesson1.singletons.SingletonForHistoryOfCities;
 import com.example.androidlesson1.workingWithFragments.FragmentBottom;
 import com.example.androidlesson1.workingWithFragments.FragmentTop;
@@ -102,6 +101,10 @@ public class MainActivity extends BaseActivity implements Constants, PublisherGe
                 break;
             case (R.id.menu_thermometer):
                 intent = new Intent(getApplicationContext(), ThermometerActivity.class);
+                startActivity(intent);
+                break;
+            case (R.id.menu_website):
+                intent = new Intent(getApplicationContext(), WebsiteActivity.class);
                 startActivity(intent);
                 break;
         }

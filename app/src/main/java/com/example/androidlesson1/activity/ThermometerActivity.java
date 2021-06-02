@@ -1,4 +1,4 @@
-package com.example.androidlesson1;
+package com.example.androidlesson1.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.androidlesson1.R;
+import com.example.androidlesson1.ThermometerView;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class ThermometerActivity extends AppCompatActivity {

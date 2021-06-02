@@ -59,4 +59,5 @@
     <string name="wind_and_colon">Wind: </string>
     <string name="pressure_and_colon">Pressure: </string>
     <string name="humidity_and_colon">Humidity: </string>
+    <string name="website">Website</string>
 </resources>

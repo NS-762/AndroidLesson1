@@ -26,6 +26,7 @@ import com.example.androidlesson1.R;
 import com.example.androidlesson1.singletons.SingletonForImage;
 import com.example.androidlesson1.singletons.SingletonRetrofit;
 import com.example.androidlesson1.weatherModel.WeatherRequest;
+import com.example.androidlesson1.workingWithWeatherData.ParsingWeatherData;
 import com.example.androidlesson1.workingWithWeatherData.WeatherData;
 import com.example.androidlesson1.workingWithWeatherData.WeatherFromInternet;
 
@@ -52,9 +53,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     private boolean isDataUpdateRequired = true;
     private String cityText;
     private Handler handler;
-
     private OpenWeather openWeather;
-
 
     public void setDataUpdateRequired(boolean dataUpdateRequired) {
         isDataUpdateRequired = dataUpdateRequired;
@@ -67,8 +66,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         return fragmentTop;
     }
 
-
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,7 +73,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
 
         view = inflater.inflate(R.layout.fragment_top, container, false);
         init();
-
 
         if (savedInstanceState != null) {
             isDataUpdateRequired = savedInstanceState.getBoolean("IsDataUpdateRequired");
@@ -93,9 +89,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
             humidityTextView.setText(savedInstanceState.getString("humidity"));
             weatherPictureView = SingletonForImage.getInstance().getWeatherPicture();
         } else { //в противном случае загрузить данные из интернета
-/*            WeatherData weatherData = new WeatherData(this,
-                    cityText);
-            weatherData.getWeatherData();*/
 
             requestRetrofit(cityText, "metric", BuildConfig.WEATHER_API_KEY);
             cityTextView.setText(cityText);
@@ -112,8 +105,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -157,6 +148,7 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         handler.post(new Runnable() {
             @Override
             public void run() {
+                descriptionTextView.setText(description);
                 temperatureTextView.setText(temp);
                 windTextView.setText(wind);
                 pressureTextView.setText(pressure);
@@ -174,7 +166,8 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
                     @Override
                     public void onResponse(Call<WeatherRequest> call, Response<WeatherRequest> response) {
                         if (response.body() != null) {
-                            setWeatherDataFromInternet(response);
+                            ParsingWeatherData parsingWeatherData = new ParsingWeatherData(FragmentTop.this, response);
+                            parsingWeatherData.parsingAndSendData();
                         }
                     }
 
@@ -184,7 +177,6 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
                     }
                 });
     }
-
 
     private void init() {
         cityTextView = view.findViewById(R.id.city_0);
@@ -197,13 +189,10 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         descriptionTextView = view.findViewById(R.id.description_0);
         cityText = cityTextView.getText().toString();
         handler = new Handler();
-
         openWeather = SingletonRetrofit.getInstance().getRetrofit().create(OpenWeather.class);
     }
 
-
-
-    public void setWeatherDataFromInternet(Response<WeatherRequest> response) {
+    /*public void setWeatherDataFromInternet(Response<WeatherRequest> response) {
         String mainDescription = response.body().getWeather().get(0).getMain();
         String temp = (int) response.body().getMain().getTemp() + "\u00B0";
         String wind = response.body().getWind().getSpeed() + "0";
@@ -240,13 +229,12 @@ public class FragmentTop extends Fragment implements Constants, Subscriber, Weat
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
         String dayText = sdf.format(dateFormat);
 
+        descriptionTextView
         temperatureTextView.setText(temp);
         windTextView.setText(wind);
         pressureTextView.setText(pressure);
         humidityTextView.setText(humidity);
         weatherPictureView.setImageResource(weatherPicture);
         dayTextView.setText(dayText);
-
-
-    }
+    }*/
 }

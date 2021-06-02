@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import javax.net.ssl.HttpsURLConnection;
 
 public class WeatherData {
-    private static final String TAG = "WEATHER";
+/*    private static final String TAG = "WEATHER";
     private static String WEATHER_URL;
     private String city = "Moscow"; //по умолчанию погода для Мск
     private WeatherRequest weatherRequest;
@@ -56,9 +56,9 @@ public class WeatherData {
                         Gson gson = new Gson();
                         weatherRequest = gson.fromJson(result, WeatherRequest.class);
 
-                        ParsingWeatherData parsingWeatherData =
+                        *//*ParsingWeatherData parsingWeatherData =
                                 new ParsingWeatherData(weatherFromInternet, weatherRequest); //класс для парсинга данных
-                        parsingWeatherData.parsingAndSendData();
+                        parsingWeatherData.parsingAndSendData();*//*
 
                     } catch (Exception e) {
                         Log.e(TAG, "Fail connection", e);
@@ -81,7 +81,7 @@ public class WeatherData {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private String getLines(BufferedReader in) {
         return in.lines().collect(Collectors.joining("\n"));
-    }
+    }*/
 
 
 }

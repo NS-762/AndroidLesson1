@@ -61,5 +61,6 @@
     <string name="wind_and_colon">Ветер:</string>
     <string name="pressure_and_colon">Давление:</string>
     <string name="humidity_and_colon">Влажность:</string>
+    <string name="website">Веб-сайт</string>
 
 </resources>
