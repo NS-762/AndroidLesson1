@@ -1,6 +1,10 @@
 package com.example.androidlesson1;
 
 import android.os.Handler;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.example.androidlesson1.activity.MainActivity;
 
 import java.io.IOException;
 
@@ -19,10 +23,11 @@ public class OkHttpRequester {
 
     public void run(String url) {
         OkHttpClient client = new OkHttpClient();
-        Request.Builder builder = new Request.Builder();
-        builder.url(url);
 
-        Request request = builder.build();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
         Call call = client.newCall(request);
 
         call.enqueue(new Callback() {
@@ -31,6 +36,7 @@ public class OkHttpRequester {
 
             @Override
             public void onFailure(Call call, IOException e) {
+                Log.e( "TAG", "ОШИБКА ПОДКЛЮЧЕНИЯ");
             }
 
             @Override
@@ -39,6 +45,7 @@ public class OkHttpRequester {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+
                         listener.onCompleted(answer);
                     }
                 });

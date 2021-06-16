@@ -3,7 +3,10 @@ package com.example.androidlesson1.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.example.androidlesson1.OkHttpRequester;
 import com.example.androidlesson1.R;
@@ -20,9 +23,12 @@ public class WebsiteActivity extends AppCompatActivity {
         OkHttpRequester requester = new OkHttpRequester(new OkHttpRequester.OnResponseCompleted() {
             @Override
             public void onCompleted(String content) {
-                page.loadData(content, "text/html; charset=utf-8", "utf-8");
+                WebSettings settings = page.getSettings();
+                settings.setDefaultTextEncodingName("utf-8");
+                page.loadDataWithBaseURL(null, content, "text/html", "utf-8", null);
+//                page.loadData(content, "text/html; charset=utf-8", null);
             }
         });
-        requester.run("https://geekbrains.ru");
+        requester.run("https://lenta.ru/");
     }
 }
